@@ -183,3 +183,32 @@ body{background: #eee ;font-family: 'Open Sans', sans-serif;}h3{font-size: 30px;
   margin-top: 75px;
   height: 200px;
 }
+
+/*Hover Effects*/
+img.default-icon{
+  position: relative !important;
+  margin: auto !important;
+  height: 35px !important;
+  width: 35px !important;
+}
+img.overlay-img{
+  position: absolute !important;
+  margin: auto !important;
+  height: 35px !important;
+  width: 35px !important;
+  left: 14px !important;
+  top: 0px !important;
+  z-index: 1;
+}
+
+img.default-icon:hover {
+  opacity: 0;
+  transition: .5s ease;
+}
+img.overlay-img{
+  opacity: 0;
+}
+img.overlay-img:hover{
+  opacity: 1;
+  transition: .5s ease;
+}
