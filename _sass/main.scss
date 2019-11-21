@@ -1,3 +1,10 @@
+/*Navigation styles*/
+.current-page{
+  color: white;
+  background-color: #800000ff;
+}
+/*======================================*/
+
 .nopadding{
   padding:0px 0px 0px 0px !important;
 }
@@ -65,6 +72,7 @@ p.time-span{
   color: gray;
   margin: auto;
 }
+/*========================*/
 
 /*School section*/
 .course-title{
@@ -88,6 +96,7 @@ p.time-span{
   font-style: italic;
   font-size: 12px;
 }
+/*========================*/
 
 /*Left Pane*/
 span.skills-desc{
@@ -111,6 +120,8 @@ ul.expertise{
 ul.skills-list{
   list-style-type: circle;
 }
+/*========================*/
+
 /*Right Panes*/
 .education{
   border-left: 1px solid black;
@@ -124,6 +135,7 @@ ul.skills-list{
 .emp-role-list{
   font-size: 13px;
 }
+/*========================*/
 
 /*Scroll up button*/
 #return-to-top {
@@ -166,6 +178,7 @@ ul.skills-list{
     color: #fff;
     top: 5px;
 }
+/*========================*/
 
 /* Extra Things */
 body{background: #eee ;font-family: 'Open Sans', sans-serif;}h3{font-size: 30px; font-weight: 400;text-align: center;margin-top: 50px;}h3 i{color: #444;}
@@ -212,6 +225,7 @@ img.overlay-img:hover{
   opacity: 1;
   transition: .5s ease;
 }
+/*========================*/
 
 /*OuiBounce Modal*/
 #ouibounce-modal {
