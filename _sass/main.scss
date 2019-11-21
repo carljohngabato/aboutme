@@ -1,3 +1,185 @@
-.current {
-  color: green;
+.nopadding{
+  padding:0px 0px 0px 0px !important;
+}
+
+img{
+  height:250px;
+  width:220px;
+}
+
+.b-container{
+  background-color: #ebebeb;
+  padding: 50px 0px 50px 0px;
+}
+
+h4{
+  text-align: center;
+}
+
+.objective-title{
+  height: 30px;
+  background-color: #800000ff;
+}
+.objective-title h5{
+  color: #ffffff;
+  text-align: center;
+}
+.objective-body{
+  text-align: center;
+  text-indent: 5px;
+}
+.emp-history-title{
+  height: 30px;
+  background-color: #800000ff;
+}
+.emp-history-title h5 {
+  color: #ffffff;
+  text-align: center;
+}
+.education-title{
+  height: 30px;
+  background-color: #800000ff;
+}
+.education-title h5{
+  color: #ffffff;
+  text-align: center;
+}
+.skills-body h6{
+  text-indent: 10px;
+}
+
+/*Employment section*/
+.company-name{
+  font-style: italic;
+  font-size: 13px;
+  margin-bottom: 5px !important;
+}
+p.emp-dates{
+  font-size: 12px;
+  text-indent: 15px;
+  margin-bottom: 5px !important;
+}
+p.time-span{
+  font-size: 10px;
+  text-indent: 15px;
+  color: gray;
+  margin: auto;
+}
+
+/*School section*/
+.course-title{
+  text-indent: 15px;
+  margin: 0px;
+}
+.school-name{
+  text-indent: 15px;
+  margin: 0px;
+  font-style: italic;
+  font-size: 13px;
+}
+.school-address{
+  font-size: 12px;
+  text-indent: 15px;
+  margin: 0px;
+}
+.school-contact{
+  text-indent: 15px;
+  margin: 0px;
+  font-style: italic;
+  font-size: 12px;
+}
+
+/*Left Pane*/
+span.skills-desc{
+  font-size: 10px;
+  color: gray;
+}
+.green-bar{
+  height: 15px;
+  width: 15px;
+}
+.red-bar{
+  height: 15px;
+  width: 15px;
+}
+.list-inline-item{
+  margin: 0px !important;
+}
+ul.expertise{
+  list-style-type: none;
+}
+ul.skills-list{
+  list-style-type: circle;
+}
+/*Right Panes*/
+.education{
+  border-left: 1px solid black;
+}
+.emp-history{
+  border-left: 1px solid black;
+}
+.emp-role {
+  font-size: 13px;
+}
+.emp-role-list{
+  font-size: 13px;
+}
+
+/*Scroll up button*/
+#return-to-top {
+    position: fixed;
+    bottom: 45px;
+    right: 20px;
+    background: rgb(0, 0, 0);
+    background: rgba(0, 0, 0, 0.7);
+    width: 50px;
+    height: 50px;
+    display: block;
+    text-decoration: none;
+    -webkit-border-radius: 35px;
+    -moz-border-radius: 35px;
+    border-radius: 35px;
+    display: none;
+    -webkit-transition: all 0.3s linear;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+#return-to-top i {
+    color: #fff;
+    margin: 0;
+    position: relative;
+    left: 16px;
+    top: 13px;
+    font-size: 19px;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+#return-to-top:hover {
+    background: #800000ff;
+}
+#return-to-top:hover i {
+    color: #fff;
+    top: 5px;
+}
+
+/* Extra Things */
+body{background: #eee ;font-family: 'Open Sans', sans-serif;}h3{font-size: 30px; font-weight: 400;text-align: center;margin-top: 50px;}h3 i{color: #444;}
+
+.ad-bg-custom{
+    background-color: #4A777A	!important;
+}
+.ad-bg-custom:hover{
+    background-color: #2F4F4F !important;
+  }
+.bg-custom {
+    background-color: #008081 !important;
+}
+.brandlogo{
+  margin-top: 75px;
+  height: 200px;
 }
