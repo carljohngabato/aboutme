@@ -1,0 +1,7 @@
+---
+layout: default
+title: Blogs
+---
+# Blogs page
+
+This page tells you a little bit about me.
