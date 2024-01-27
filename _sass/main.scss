@@ -59,29 +59,31 @@ h4{
 }
 
 /*Skills*/
-.skill-title{
+h8.skill-title{
   font-size: 15px;
-}
-.skill-svc{
-  font-size: 12.5px;
+  font-weight: 400;
 }
 
 /*Employment section*/
 p.job-title{
   font-size: 15px;
   font-weight: bold;
-  margin-bottom: 5px !important;
+  margin-bottom: 1px !important;
+  text-decoration-line: underline;
 }
 .company-name{
   font-style: italic;
   font-size: 13px;
   color: gray;
-  margin-bottom: 5px !important;
+  margin-bottom: 1px !important;
+  margin-top: 1px !important;
+  font-weight: 500;
 }
 p.emp-dates{
   font-size: 13px;
   text-indent: 5px;
   margin-bottom: 5px !important;
+  font-weight: 500;
 }
 p.time-span{
   font-size: 10px;
@@ -136,7 +138,8 @@ ul.expertise{
 }
 ul.skills-list{
   list-style-type: circle;
-  font-size: 15px;
+  font-size: 12.5px;
+  font-weight: 300;
 }
 /*========================*/
 
