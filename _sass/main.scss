@@ -69,17 +69,18 @@ h4{
 /*Employment section*/
 p.job-title{
   font-size: 15px;
-  font-style: bold;
+  font-weight: bold;
   margin-bottom: 5px !important;
 }
 .company-name{
   font-style: italic;
   font-size: 13px;
+  color: gray;
   margin-bottom: 5px !important;
 }
 p.emp-dates{
-  font-size: 15px;
-  text-indent: 15px;
+  font-size: 13px;
+  text-indent: 5px;
   margin-bottom: 5px !important;
 }
 p.time-span{
@@ -147,10 +148,10 @@ ul.skills-list{
   border-left: 1px solid black;
 }
 .emp-role {
-  font-size: 13px;
+  font-size: 10px;
 }
 .emp-role-list{
-  font-size: 13px;
+  font-size: 10px;
 }
 /*========================*/
 
