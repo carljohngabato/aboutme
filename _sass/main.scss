@@ -8,10 +8,19 @@
 .nopadding{
   padding:0px 0px 0px 0px !important;
 }
-
+/*
 img{
   height:250px;
   width:220px;
+}*/
+
+img.avatar {
+  border-style: solid;
+  border-radius: 100% !important;
+  height: 250px;
+  width: 250px;
+  border-color: azure;
+  border-width: thick;
 }
 
 .b-container{
