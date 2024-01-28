@@ -26,8 +26,9 @@ img{
 .socials{
 
 }*/
-.double-img{
-  background-image: url(/assets/images/avatar-bg.png);
+div.avatar-img{
+  display: flex;
+  justify-content: center;
 }
 
 img.avatar {
