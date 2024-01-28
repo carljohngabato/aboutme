@@ -10,8 +10,12 @@
 }
 
 .avatar-1{
-  display: flex;
-  justify-content: center;
+  border-style: solid;
+  border-radius: 100% !important;
+  height: 250px;
+  width: 250px;
+  border-color: azure;
+  border-width: thick;
 }
 /*
 img{
