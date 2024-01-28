@@ -136,12 +136,15 @@ p.time-span{
 .course-title{
   text-indent: 15px;
   margin: 0px;
+  text-decoration-line: underline;
 }
 .school-name{
   text-indent: 15px;
   margin: 0px;
   font-style: italic;
   font-size: 13px;
+  font-weight: 500;
+  color: gray;
 }
 .school-address{
   font-size: 12px;
