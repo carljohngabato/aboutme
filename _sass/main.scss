@@ -17,15 +17,6 @@
   border-color: azure;
   border-width: thick;
 }
-/*
-img{
-  height:250px;
-  width:220px;
-}*
-
-.socials{
-
-}*/
 
 div.avatar-row{
   position: relative;
@@ -49,6 +40,10 @@ img.avatar-bg{
   height: 100%;
   width: 100%;
   opacity: 50%;
+}
+
+p.certs{
+  font-size: small;
 }
 
 .b-container{
@@ -270,7 +265,7 @@ img.overlay-img{
   margin: auto !important;
   height: 35px !important;
   width: 35px !important;
-  left: 14px !important;
+  left: 11px !important;
   top: 0px !important;
   z-index: 1;
 }
