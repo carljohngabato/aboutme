@@ -26,11 +26,10 @@ img{
 .socials{
 
 }*/
-
-.avatar-container{
-  display: flex;
-  justify-content: center;
+.double-img{
+  background-image: url(/assets/images/avatar-bg.png);
 }
+
 img.avatar {
   border-style: solid;
   border-radius: 100% !important;
