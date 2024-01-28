@@ -26,9 +26,14 @@ img{
 .socials{
 
 }*/
-div.avatar-img{
-  display: flex;
-  justify-content: center;
+
+div.avatar-row{
+  position: relative;
+}
+
+div.avatar{
+  position: absolute;
+  padding-top: 100px;
 }
 
 img.avatar {
