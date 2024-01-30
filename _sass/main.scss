@@ -490,7 +490,7 @@ img.overlay-img:hover{
 }
 .row-1{
   background-color: black;
-  height: 40vh;
+  height: 40%;
   width: auto;
   margin-left: auto;
   margin-right: auto;
@@ -500,8 +500,29 @@ img.overlay-img:hover{
   width: -webkit-fill-available;
 }
 .row-2{
-  height: 100vh;
+  height: 60%;
   width: inherit;
   margin-left: auto;
   margin-right: auto;
+}
+.row-2-col-1{
+  height: 50%;
+  width: -webkit-fill-available;
+  border-style: solid;
+}
+.row-2-col-row-1{
+  height: 40%;
+  width: -webkit-fill-available;
+}
+.row-2-col-row-2{
+  height: 30%;
+  width: -webkit-fill-available;
+}
+.row-2-col-row-3{
+  height: 10%;
+  width: -webkit-fill-available;
+}
+.row-2-col-row-4{
+  height: 20%;
+  width: -webkit-fill-available; 
 }
