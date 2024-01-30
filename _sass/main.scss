@@ -495,6 +495,10 @@ img.overlay-img:hover{
   margin-left: auto;
   margin-right: auto;
 }
+.row-1-bg{
+  height: inherit;
+  width: -webkit-fill-available;
+}
 .row-2{
   height: 100vh;
   width: inherit;
