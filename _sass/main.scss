@@ -494,10 +494,27 @@ img.overlay-img:hover{
   width: auto;
   margin-left: auto;
   margin-right: auto;
+  position: relative;
 }
 .row-1-bg{
   height: inherit;
   width: -webkit-fill-available;
+}
+.row-1-overlay{
+  position: absolute;
+  border-style: solid;
+}
+.row-1-overlay-col-1{
+  height: inherit;
+  width: -webkit-fill-available;
+  border-style: solid;
+  border: bisque;
+}
+.row-1-overlay-col-2{
+  height: inherit;
+  width: -webkit-fill-available;
+  border-style: solid;
+  border: coral;
 }
 .row-2{
   height: 60%;
