@@ -502,20 +502,26 @@ img.overlay-img:hover{
 }
 .row-1-overlay{
   position: absolute;
-  border-style: solid;
+//  border-style: solid;
   height: -webkit-fill-available;
   width: -webkit-fill-available;
 }
 .row-1-overlay-col-1{
   height: inherit;
-  border-style: solid;
-  border-color: bisque;
+//  border-style: solid;
+//  border-color: bisque;
   float: right;
+}
+.profile{
+  text-align: justify;
+  color: antiquewhite;
+  font-size: 1.5vw;
+  margin-top: 10%;
 }
 .row-1-overlay-col-2{
   height: inherit;
-  border-style: solid;
-  border-color: coral;
+//  border-style: solid;
+//  border-color: coral;
 }
 .row-2{
   height: 60%;
