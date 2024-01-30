@@ -511,17 +511,28 @@ img.overlay-img:hover{
 //  border-style: solid;
 //  border-color: bisque;
   float: right;
+  display: grid;
+  align-items: center;
 }
 .profile{
   text-align: justify;
   color: antiquewhite;
   font-size: 1.5vw;
-  margin-top: 10%;
 }
 .row-1-overlay-col-2{
   height: inherit;
+  display: grid;
+  align-items: center;
 //  border-style: solid;
 //  border-color: coral;
+}
+img.avatar-overlay{
+  border-style: solid;
+  border-radius: 100%;
+  height: 200px;
+  width: 200px;
+  border-color: azure;
+  border-width: thick;
 }
 .row-2{
   height: 60%;
