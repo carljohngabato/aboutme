@@ -504,12 +504,12 @@ img.overlay-img:hover{
 }
 .row-1-overlay{
   position: absolute;
-  height: inherit;
-  width: fit-content;
+  height: 100%;
+  width: -webkit-fill-available;
+  overflow: auto;
 }
 .row-1-overlay-col-1{
   height: inherit;
-  float: right;
   display: grid;
   align-items: center;
 }
@@ -522,6 +522,7 @@ img.overlay-img:hover{
   height: inherit;
   display: grid;
   align-items: center;
+  float: right;
 }
 img.avatar-overlay{
   border-style: solid;
