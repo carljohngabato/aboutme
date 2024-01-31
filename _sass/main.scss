@@ -567,11 +567,19 @@ img.def-icn{
   width: 35px;
 
 }
+img.def-icon:hover{
+  opacity: 0;
+  transition: .5 ease;
+}
 img.over-icn{
   position: relative !important;
   height: 35px;
   width: 35px;
   opacity: 0;
+}
+img.over-icn:hover{
+  transition: .5 ease;
+  opacity: 1;
 }
 .row-col-cont-2{
   height: 33%;
