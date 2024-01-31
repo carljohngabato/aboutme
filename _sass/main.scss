@@ -504,8 +504,8 @@ img.overlay-img:hover{
 }
 .row-1-overlay{
   position: absolute;
-  height: -webkit-fill-available;
-  width: -webkit-fill-available;
+  height: inherit;
+  width: fit-content;
 }
 .row-1-overlay-col-1{
   height: inherit;
@@ -533,7 +533,7 @@ img.avatar-overlay{
 }
 .row-2{
   height: auto;
-  width: inherit;
+  width: auto;
   margin-left: auto;
   margin-right: auto;
 }
@@ -621,7 +621,7 @@ img.over-icn:hover{
 }
 .row-jobs{
   border-style: dotted;
-  height: 80%;
+  height: auto;
   width: -webkit-fill-available;
 }
 .row-2-col-2-row-2{
