@@ -545,12 +545,33 @@ img.avatar-overlay{
   width: -webkit-fill-available;
   //border-style: solid;
 }
+.col-cont-1{
+  width: 50%;
+}
+.col-cont-2{
+  width: 50%;
+}
 .row-col-cont-1{
   height: 33%;
   width: -webkit-fill-available;
   border-style: solid;
   display: grid;
-  align-items: center;
+  place-items: center;
+  place-content: center;
+  overflow: hidden;
+  position: relative;
+}
+img.def-icn{
+  position: absolute;
+  height: 35px;
+  width: 35px;
+
+}
+img.over-icn{
+  position: relative !important;
+  height: 35px;
+  width: 35px;
+  opacity: 0;
 }
 .row-col-cont-2{
   height: 33%;
