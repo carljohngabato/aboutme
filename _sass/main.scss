@@ -595,9 +595,9 @@ img.over-icn:hover{
   width: 16.66%;
   height: -webkit-fill-available;
 }
-.row-2-col-2{
-  height: 60vh;
-  width: -webkit-fill-available;
+.col-2-row-2{
+  margin: 0px;
+  padding: 0px;
 }
 .row-2-col-2-row-1{
   height: 40%;
@@ -610,11 +610,13 @@ img.over-icn:hover{
 .row-exp{
   border-color: red;
 }
-.exp-title{
+.row-exp-title{
   border-style: solid;
+  height: 20%;
 }
-.exp-desc{
+.row-jobs{
   border-style: dotted;
+  height: 80%;
 }
 .row-2-col-2-row-2{
   height: 30%;
