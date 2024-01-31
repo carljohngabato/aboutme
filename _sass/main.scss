@@ -487,6 +487,8 @@ img.overlay-img:hover{
 .t-container{
   margin-left: 15%;
   margin-right: 15%;
+  height: 100vh;
+  margin-bottom: 10%;
 }
 .row-1{
   background-color: black;
@@ -502,14 +504,11 @@ img.overlay-img:hover{
 }
 .row-1-overlay{
   position: absolute;
-//  border-style: solid;
   height: -webkit-fill-available;
   width: -webkit-fill-available;
 }
 .row-1-overlay-col-1{
   height: inherit;
-//  border-style: solid;
-//  border-color: bisque;
   float: right;
   display: grid;
   align-items: center;
@@ -523,8 +522,6 @@ img.overlay-img:hover{
   height: inherit;
   display: grid;
   align-items: center;
-//  border-style: solid;
-//  border-color: coral;
 }
 img.avatar-overlay{
   border-style: solid;
@@ -543,7 +540,6 @@ img.avatar-overlay{
 .row-2-col-1{
   height: 50%;
   width: -webkit-fill-available;
-  //border-style: solid;
 }
 .col-cont-1{
   width: 50%;
@@ -554,7 +550,6 @@ img.avatar-overlay{
 .row-col-cont-1{
   height: 33%;
   width: -webkit-fill-available;
-//  border-style: solid;
   display: grid;
   place-items: center;
   place-content: center;
@@ -584,7 +579,6 @@ img.over-icn:hover{
 .row-col-cont-2{
   height: 33%;
   width: -webkit-fill-available;
-//  border-style: solid;
   display: grid;
   place-items: center;
   place-content: center;
