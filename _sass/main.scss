@@ -585,6 +585,11 @@ img.over-icn:hover{
   height: 33%;
   width: -webkit-fill-available;
   border-style: solid;
+  display: grid;
+  place-items: center;
+  place-content: center;
+  overflow: hidden;
+  position: relative;
 }
 .socials{
   width: 16.66%;
