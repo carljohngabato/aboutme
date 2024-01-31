@@ -602,21 +602,26 @@ img.over-icn:hover{
 .row-2-col-2-row-1{
   height: 40%;
   width: -webkit-fill-available;
-//  overflow: hidden;
-  display: grid;
-  place-content: center;
-  place-items: center;
 }
 .row-exp{
   border-color: red;
 }
+.exp-title-cont{
+  display: grid;
+  place-items: center;
+  place-content: center;
+}
 .row-exp-title{
   border-style: solid;
-  height: 20%;
+  height: inherit;
+  width: -webkit-fill-available;
+  max-width: max-content;
+  max-height: max-content;
 }
 .row-jobs{
   border-style: dotted;
   height: 80%;
+  width: -webkit-fill-available;
 }
 .row-2-col-2-row-2{
   height: 30%;
