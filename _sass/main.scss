@@ -624,9 +624,6 @@ img.over-icn:hover{
   height: auto;
   width: -webkit-fill-available;
 }
-.sy-dates{
-  float: left;
-}
 .row-2-col-2-row-2{
   height: auto;
   width: -webkit-fill-available;
@@ -634,6 +631,15 @@ img.over-icn:hover{
 .row-2-col-2-row-3{
   height: auto;
   width: -webkit-fill-available;
+}
+.sy-dates{
+  float: left;
+  text-align: left !important;
+  padding: 0px !important;
+}
+.sch-info{
+  text-align: right;
+  text-indent: 0px !important;
 }
 .row-2-col-2-row-4{
   height: auto;
