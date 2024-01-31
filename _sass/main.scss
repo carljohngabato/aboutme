@@ -487,7 +487,6 @@ img.overlay-img:hover{
 .t-container{
   margin-left: 15%;
   margin-right: 15%;
-  height: 100vh;
   margin-bottom: 10%;
 }
 .row-1{
@@ -496,6 +495,7 @@ img.overlay-img:hover{
   width: auto;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 1%;
   position: relative;
 }
 .row-1-bg{
@@ -532,13 +532,17 @@ img.avatar-overlay{
   border-width: thick;
 }
 .row-2{
-  height: 60%;
+  height: auto;
   width: inherit;
   margin-left: auto;
   margin-right: auto;
 }
 .row-2-col-1{
   height: 50%;
+  width: -webkit-fill-available;
+}
+.expertise-row{
+  height: auto;
   width: -webkit-fill-available;
 }
 .col-cont-1{
@@ -592,6 +596,7 @@ img.over-icn:hover{
 .col-2-row-2{
   margin: 0px;
   padding: 0px;
+  height: auto;
 }
 .row-2-col-2-row-1{
   height: 40%;
