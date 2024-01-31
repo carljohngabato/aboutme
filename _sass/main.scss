@@ -549,6 +549,8 @@ img.avatar-overlay{
   height: 33%;
   width: -webkit-fill-available;
   border-style: solid;
+  display: grid;
+  align-items: center;
 }
 .row-col-cont-2{
   height: 33%;
