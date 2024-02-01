@@ -629,6 +629,15 @@ img.over-icn:hover{
   height: auto;
   width: -webkit-fill-available;
 }
+.sk-left{
+  background-color: blue;
+}
+.sk-left-row{
+  width: 100%;
+}
+.sk-right{
+  background-color: red;
+}
 .row-2-col-2-row-3{
   height: auto;
   width: -webkit-fill-available;
@@ -651,6 +660,9 @@ img.over-icn:hover{
 }
 .bar-meter{
   border-style: solid;
+}
+.fill-cont{
+  height: 100%;
 }
 .bar-filled{
   background-color: green;
