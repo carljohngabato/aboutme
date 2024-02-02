@@ -629,8 +629,21 @@ img.over-icn:hover{
   height: auto;
   width: -webkit-fill-available;
 }
-.left-sk-1{
-  width: 50%;
+.sk-list{
+  padding-left: 5% !important;
+  margin: 0 !important;
+}
+.sk-bar-row{
+  height: 25%;
+}
+.sk-bar{
+  border-style: solid;
+  padding: 0 !important;
+}
+.sk-bar-fill{
+  background-color: green;
+  width: 80%;
+  height: 100%;
 }
 .row-2-col-2-row-3{
   height: auto;
