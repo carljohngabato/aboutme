@@ -635,9 +635,12 @@ img.over-icn:hover{
 }
 .sk-bar-row{
   height: 25%;
+  padding-top: 5%;
+  padding-bottom: 5%;
 }
 .sk-bar{
   border-style: solid;
+  border-width: thin;
   padding: 0 !important;
 }
 .sk-bar-fill{
