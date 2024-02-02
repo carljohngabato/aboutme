@@ -610,6 +610,7 @@ img.over-icn:hover{
   display: grid;
   place-items: center;
   place-content: center;
+  border-style: solid;
 }
 .row-exp-title{
   border-style: solid;
@@ -629,8 +630,11 @@ img.over-icn:hover{
   height: auto;
   width: -webkit-fill-available;
 }
+.sk-title-cont{
+  padding: 3% !important;
+}
 .sk-list{
-  padding-left: 5% !important;
+  padding-left: 10% !important;
   margin: 0 !important;
 }
 .sk-bar-row-100{
