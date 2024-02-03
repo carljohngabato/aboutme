@@ -531,6 +531,18 @@ img.overlay-img:hover{
   font-size: small;
   font-weight: lighter;
 }
+.exp-lbl{
+  height: auto;
+  width: 50%;
+}
+.exp-mtr{
+  width: 50%;
+  padding-left: 30%;
+  padding-bottom: 3%;
+}
+.xp-bar-mtr{
+  width: -webkit-fill-available;
+}
 .t-container{
   margin-left: 15%;
   margin-right: 15%;
@@ -709,6 +721,7 @@ img.over-icn:hover{
   border-width: thin;
   padding: 0 !important;
   margin-right: 10% !important;
+  width: -webkit-fill-available;
 }
 .sk-bar-90{
   background-color: green;
