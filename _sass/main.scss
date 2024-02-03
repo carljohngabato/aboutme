@@ -538,7 +538,10 @@ img.overlay-img:hover{
 .xp-mtr{
   width: 30%;
   padding-left: 10%;
-  padding-right: 5%;
+  padding-right: 0 !important;
+  margin: 0 !important;
+  display: grid;
+  align-items: center;
 }
 .xp-bar-mtr-cont{
   width: -webkit-fill-available;
