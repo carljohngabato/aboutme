@@ -531,16 +531,23 @@ img.overlay-img:hover{
   font-size: small;
   font-weight: lighter;
 }
-.exp-lbl{
+.xp-lbl{
   height: auto;
   width: 50%;
 }
-.exp-mtr{
+.xp-mtr{
   width: 50%;
   padding-left: 30%;
+  padding-right: 5%;
+}
+.xp-bar-mtr-cont{
+  width: -webkit-fill-available;
+  height: 100%;
+  padding-top: 3%;
   padding-bottom: 3%;
 }
 .xp-bar-mtr{
+  border-style: solid;
   width: -webkit-fill-available;
 }
 .t-container{
