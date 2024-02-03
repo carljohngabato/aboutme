@@ -500,6 +500,38 @@ img.overlay-img:hover{
   width: 33.33%;
   height: 100%;
 }
+.ref-cont{
+  width: 50%;
+  height: 100%;
+}
+.ref-name{
+  font-size: larger;
+  font-weight: 500;
+  text-decoration: underline;
+  margin: 0 !important;
+}
+.ref-tit{
+  font-style: italic;
+  font-size: smaller;
+  font-weight: 500;
+  margin: 0 !important;
+}
+.ref-comp{
+  margin: 0 !important;
+  font-size: small;
+  font-weight: lighter;
+}
+.ref-num{
+  margin: 0 !important;
+  font-size: small;
+  font-weight: lighter;
+  font-style: italic;
+}
+.ref-eml{
+  margin: 0 !important;
+  font-size: small;
+  font-weight: lighter;
+}
 .t-container{
   margin-left: 15%;
   margin-right: 15%;
