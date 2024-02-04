@@ -16,8 +16,9 @@ $('#return-to-top').click(function() { // When arrow is clicked
 function hide_expdesk(){
   var x = document.getElementById("exp-desc");
   if(x.style.display === "none"){
-    x.style.display = "block";
+    x.style.visibility = "visible";
+    x.style.transition = "opacity 1s ease-in-out"
   }else{
-    x.style.display = "none";
+    x.style.visibility = "hidden";
   }
 }
