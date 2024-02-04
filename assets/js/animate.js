@@ -14,7 +14,7 @@ $('#return-to-top').click(function() { // When arrow is clicked
 
 //Pop-up balloons
 function hide_expdesk(){
-  var x = document.getElementsByClassName("exp-desc");
+  var x = document.getElementById("exp-desc");
   if(x.style.display === "none"){
     x.style.display = "block";
   }else{
