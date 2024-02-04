@@ -15,13 +15,11 @@ $('#return-to-top').click(function() { // When arrow is clicked
 /* Hide||Show Expertise Description */
 function hide_expdesk(){
   var x = document.getElementById("exp-desc");
-  if(x.style.visibility === "hidden"){
-    x.style.visibility = "visible";
-    x.style.fadeIn = "1"
-    x.style.opacity = "1"
+  if(x.style.display === "none"){
+    x.style.display = "block";
+    x.style.transition = "all 1s ease-in-out"
   }else{
-    x.style.visibility = "hidden";
-    x.style.opacity = "0"
-    x.style.fadeOut = "1S"
+    x.style.display = "none";
+    x.style.transition = "all 1s ease-in-out"
   }
 }
