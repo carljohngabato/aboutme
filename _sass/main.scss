@@ -531,6 +531,9 @@ img.overlay-img:hover{
   font-size: small;
   font-weight: lighter;
 }
+#xp-title:hover ~ #xp-desc{
+  transition: all 1s ease-in-out;
+}
 .xp-lbl{
   height: auto;
   width: 70%;
