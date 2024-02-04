@@ -11,3 +11,13 @@ $('#return-to-top').click(function() { // When arrow is clicked
     scrollTop: 0 // Scroll to top of body
   }, 500);
 });
+
+//Pop-up balloons
+function bal_365(){
+  var x = document.getElementById("bal-o365");
+  if(x.style.display === "none"){
+    x.style.display = "block";
+  }else{
+    x.style.display = "none";
+  }
+}
