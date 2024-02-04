@@ -12,10 +12,10 @@ $('#return-to-top').click(function() { // When arrow is clicked
   }, 500);
 });
 
-//Pop-up balloons
+/* Hide||Show Expertise Description */
 function hide_expdesk(){
   var x = document.getElementById("exp-desc");
-  if(x.style.display === "none"){
+  if(x.style.visibility === "hidden"){
     x.style.visibility = "visible";
     x.style.transition = "opacity 1s ease-in-out"
   }else{
