@@ -13,7 +13,7 @@ $('#return-to-top').click(function() { // When arrow is clicked
 });
 
 //Pop-up balloons
-function exp_desc(){
+function hide_expdesk(){
   var x = document.getElementsByClassName("exp-desc");
   if(x.style.display === "none"){
     x.style.display = "block";
