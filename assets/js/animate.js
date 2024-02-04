@@ -17,8 +17,11 @@ function hide_expdesk(){
   var x = document.getElementById("exp-desc");
   if(x.style.visibility === "hidden"){
     x.style.visibility = "visible";
-    x.style.transition = "opacity 1s ease-in-out"
+    x.style.fadeIn = "1"
+    x.style.opacity = "1"
   }else{
     x.style.visibility = "hidden";
+    x.style.opacity = "0"
+    x.style.fadeOut = "1S"
   }
 }
