@@ -13,8 +13,8 @@ $('#return-to-top').click(function() { // When arrow is clicked
 });
 
 //Pop-up balloons
-function bal_365(){
-  var x = document.getElementById("bal-o365");
+function exp_desc(){
+  var x = document.getElementsByClassName("exp-desc");
   if(x.style.display === "none"){
     x.style.display = "block";
   }else{
