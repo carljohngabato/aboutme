@@ -574,6 +574,7 @@ img.overlay-img:hover{
 .row-1-bg{
   height: inherit;
   width: -webkit-fill-available;
+  opacity: 50%;
 }
 .row-1-overlay{
   position: absolute;
@@ -588,8 +589,14 @@ img.overlay-img:hover{
 }
 .profile{
   text-align: justify;
-  color: antiquewhite;
-  font-size: 1.5vw;
+  color: dodgerblue;
+  font-size: 1vw;
+  font-family: 'Courier New', Courier, monospace;
+}
+.profile-name{
+  color: dodgerblue;
+  text-align: center;
+
 }
 .row-1-overlay-col-2{
   height: inherit;
@@ -598,12 +605,12 @@ img.overlay-img:hover{
   float: right;
 }
 img.avatar-overlay{
-  border-style: solid;
+//  border-style: solid;
   border-radius: 100%;
   height: 200px;
   width: 200px;
-  border-color: azure;
-  border-width: thick;
+//  border-color: azure;
+//  border-width: thick;
 }
 .row-2{
   height: auto;
