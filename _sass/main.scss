@@ -609,15 +609,10 @@ img.overlay-img:hover{
 img.avatar-overlay{
 //  border-style: solid;
   border-radius: 100%;
-  height: 200px;
+  height: auto;
   width: 100%;
 //  border-color: azure;
 //  border-width: thick;
-}
-@media(min-width: 40em){
-  .row-1-overlay-col-2{
-    width: 65%;
-  }
 }
 .row-2{
   height: auto;
