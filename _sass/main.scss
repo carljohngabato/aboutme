@@ -193,7 +193,8 @@ ul.winserver{
   font-weight: 300;
 }
 ul.blanklist{
-  list-style-type: none;
+  list-style-type: circle;
+  visibility: hidden;
   font-size: 10px;
   font-weight: 300;
 }
