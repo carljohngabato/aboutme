@@ -66,6 +66,7 @@ title: Blogs
 
             <p>Combine all those components to make a whole script</p>
             <pre id="code-block">
+
                 $gname = 'John'
                 $lname = 'DOE'
                 $acctpwd = "whateverP@ssw0rd"
@@ -87,13 +88,15 @@ title: Blogs
         
                 New-ADUser @splat -Verbose    
             </pre>
-            <p>The result would have this values</p>
+            <p>The result would have this values when you query using Get-ADUser</p>
             <pre id="code-block">
+
             Name -> John DOE
             DisplayName -> John DOE
             GivenName -> John
             SurName -> DOE
             UserPrincipalName -> john.doe@domain.xyz
+            DistinguishedName -> CN=John DOE,OU=IT,OU=User,DC=domain-xyz,DC=local
             </pre>
         </div>
     </div>    
