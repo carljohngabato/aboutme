@@ -4,35 +4,34 @@ title: Blogs
 ---
 
 <div class="container t-container">
-    <p>Create New User in a Specific OU in Active Directory using PowerShell
+    <h1>Create New User in a Specific OU in Active Directory using PowerShell</h1>
 
-        One of the most repetitive tasks a System Administrator will do is the creation of new user accounts. There are numerous ways one can create a an account in active directory. Some prefer doing it through the User Interface, quick and simple. All one needs to do is to fill out the fields or attributes necessary depending on the need of the business.
-        
-        But for some people, who have the knack to make simple thing complicated. We most often try to automate the task even though it only takes less than five minutes.
-        
-        To my fellow frustrated engineers out there, here's a script I prepared to automate the task:
-        
-        ::START::
-        
+    <p>One of the most repetitive tasks a System Administrator will do is the creation of new user accounts. There are numerous ways one can create a an account in active directory. Some prefer doing it through the User Interface, quick and simple. All one needs to do is to fill out the fields or attributes necessary depending on the need of the business.</p>
+
+    <p>But for some people, who have the knack to make simple thing complicated. We most often try to automate the task even though it only takes less than five minutes.</p>
+
+    <p>To my fellow frustrated engineers out there, here's a script I prepared to automate the task:</p>
+
+    <code>
         $gname = 'John'
         $lname = 'DOE'
         $acctpwd = "whateverP@ssw0rd"
-        
+
         #replace the value where the new user should be created in the OU
         $ref_User = jane.dove
-        
-        
+
+
         #::::CAREFULLY REVIEW THE CODE BELOW WHEN MAKING EDITS TO THE SCRIPT TO MEET YOUR ORGANIZATION'S REQUIREMENTS::::
-        
+
         #This variable retrieves the UPN Suffix of a single domain forest
         $upnsfx = (Get-ADForest).UPNSuffixes
-        
+
         #This code block is used as a reference for the new account to be created in the same OU
         $rfrnc_user = Get-ADUser $ref_User -Properties *
         $dsn = ($rfrnc_user).DistinguishedName
         $targetOU = $dsn.Substring($dsn.IndexOf('OU=',[System.StringComparison]::CurrentCultureIgnoreCase))
-        
-        
+
+
         #This block transforms all variables for the user attributes
         #The output format for this block shown below
         #Name -> John DOE
@@ -40,7 +39,7 @@ title: Blogs
         #GiveName -> John
         #SurName -> DOE
         #UserPrincipalName -> john.doe@domain.xyz
-        
+
         $splat = @{
             Path = $targetOU
             Name = "$($gname) $($lname)"
@@ -51,10 +50,9 @@ title: Blogs
             Description = 'System Administrator' #depends on what your organization use this attribute
             AccountPassword = (ConvertTo-SecureString -AsPlainText $acctpwd -force)	
         }
-        
+
         New-ADUser @splat -Verbose
         ::END::
-        
-        </p>
+    </code>
 </div>
 {% include ouibounce.html %}
