@@ -12,47 +12,58 @@ title: Blogs
 
     <p>To my fellow frustrated engineers out there, here's a script I prepared to automate the task:</p><br>
 
-    <pre>
-        $gname = 'John'
-        $lname = 'DOE'
-        $acctpwd = "whateverP@ssw0rd"
+    <div class="code-box">
+        <button class="copy-btn" onclick="copyCode()">Copy</button>
+        <textarea id="code" rows="10" cols="50" readonly>
+        <pre>
+            $gname = 'John'
+            $lname = 'DOE'
+            $acctpwd = "whateverP@ssw0rd"
 
-        #replace the value where the new user should be created in the OU
-        $ref_User = jane.dove
+            #replace the value where the new user should be created in the OU
+            $ref_User = jane.dove
 
+            #CAREFULLY REVIEW THE CODE BELOW WHEN MAKING EDITS TO THE SCRIPT TO MEET YOUR ORGANIZATION'S REQUIREMENTS#
 
-        #CAREFULLY REVIEW THE CODE BELOW WHEN MAKING EDITS TO THE SCRIPT TO MEET YOUR ORGANIZATION'S REQUIREMENTS#
+            #This variable retrieves the UPN Suffix of a single domain forest
+            $upnsfx = (Get-ADForest).UPNSuffixes
 
-        #This variable retrieves the UPN Suffix of a single domain forest
-        $upnsfx = (Get-ADForest).UPNSuffixes
+            #This code block is used as a reference for the new account to be created in the same OU
+            $rfrnc_user = Get-ADUser $ref_User -Properties *
+            $dsn = ($rfrnc_user).DistinguishedName
+            $targetOU = $dsn.Substring($dsn.IndexOf('OU=',[System.StringComparison]::CurrentCultureIgnoreCase))
 
-        #This code block is used as a reference for the new account to be created in the same OU
-        $rfrnc_user = Get-ADUser $ref_User -Properties *
-        $dsn = ($rfrnc_user).DistinguishedName
-        $targetOU = $dsn.Substring($dsn.IndexOf('OU=',[System.StringComparison]::CurrentCultureIgnoreCase))
+            #This block transforms all variables for the user attributes
+            #The output format for this block shown below
+            #Name -> John DOE
+            #Displayname -> John DOE
+            #GiveName -> John
+            #SurName -> DOE
+            #UserPrincipalName -> john.doe@domain.xyz
 
+            $splat = @{
+                Path = $targetOU
+                Name = "$($gname) $($lname)"
+                DisplayName = "$($gname) $($lname)"
+                GivenName = $gname
+                SurName = $lname
+                UserPrincipalName = "$(($gname).ToLowerCase()).$(($lname).ToLowerCase)@$($(upnsfx))"
+                Description = 'System Administrator' #depends on what your organization use this attribute
+                AccountPassword = (ConvertTo-SecureString -AsPlainText $acctpwd -force)	
+            }
 
-        #This block transforms all variables for the user attributes
-        #The output format for this block shown below
-        #Name -> John DOE
-        #Displayname -> John DOE
-        #GiveName -> John
-        #SurName -> DOE
-        #UserPrincipalName -> john.doe@domain.xyz
-
-        $splat = @{
-            Path = $targetOU
-            Name = "$($gname) $($lname)"
-            DisplayName = "$($gname) $($lname)"
-            GivenName = $gname
-            SurName = $lname
-            UserPrincipalName = "$(($gname).ToLowerCase()).$(($lname).ToLowerCase)@$($(upnsfx))"
-            Description = 'System Administrator' #depends on what your organization use this attribute
-            AccountPassword = (ConvertTo-SecureString -AsPlainText $acctpwd -force)	
-        }
-
-        New-ADUser @splat -Verbose
-        ::END::
-    </pre>
+            New-ADUser @splat -Verbose
+            ::END::
+        </pre>
+    </div>
 </div>
+
+<script>
+    function copyCode() {
+        var copyText = document.getElementById("code");
+        copyText.select();
+        document.execCommand("copy");
+        alert("Code copied to clipboard!");
+    }
+</script>
 {% include ouibounce.html %}
