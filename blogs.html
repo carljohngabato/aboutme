@@ -4,58 +4,63 @@ title: Blogs
 ---
 
 <div class="container t-container">
-    <h1 style="text-align: center;" id="new-aduser">Create New User in a Specific OU in Active Directory using PowerShell</h1><br>
+    <div class="row1">
+        <div class="col-lg-4"></div>
+        <div class="col-lg-8">
+            <h1 style="text-align: center;" id="new-aduser">Create New User in a Specific OU in Active Directory using PowerShell</h1><br>
 
-    <p>One of the most repetitive tasks a System Administrator will do is the creation of new user accounts. There are numerous ways one can create an account in active directory. Some prefer doing it through the User Interface, quick and simple. All one needs to do is to fill out the fields or attributes necessary depending on the need of the business.</p>
-
-    <p>But for some people, who have the knack to make simple thing complicated. We most often try to automate the task even though it only takes less than five minutes to complete using the user-interface.</p>
-
-    <p>To my fellow frustrated engineers out there, here's a script I prepared to automate the task:</p><br>
-
-    <p>Start by creating variables which will store the most basic attributes of creating a new user account</p>
-    <pre id="code-block">
-
-        $gname = 'John'
-        $lname = 'DOE'
-        $acctpwd = "whateverP@ssw0rd"
-    </pre>
-    <p>Replace the value of this attribute with an existing user wherein we will use its OU as a reference for the new user</p>
-    <pre id="code-block">
-
-        $ref_User = jane.dove
-    </pre>
-
-    <p>Retrieve the UPN Suffix of a single domain forest</p>
-    <pre id="code-block">
-
-        $upnsfx = (Get-ADForest).UPNSuffixes
-    </pre>
-
-    <p>Isolate the Organizational Unit of the existing user which was used as a reference by removing its Canonical Name</p>
-    
-    <pre id="code-block">
-
-        $rfrnc_user = Get-ADUser $ref_User -Properties *
-        $dsn = ($rfrnc_user).DistinguishedName
-        $targetOU = $dsn.Substring($dsn.IndexOf('OU=',[System.StringComparison]::CurrentCultureIgnoreCase))
-    </pre>
-
-    <p>This block transforms all variables for the user attributes</p>
-    
-    <pre id="code-block">
-
-        $splat = @{
-            Path = $targetOU
-            Name = "$($gname) $($lname)"
-            DisplayName = "$($gname) $($lname)"
-            GivenName = $gname
-            SurName = $lname
-            UserPrincipalName = "$(($gname).ToLowerCase()).$(($lname).ToLowerCase)@$($(upnsfx))"
-            Description = 'System Administrator' #depends on what your organization use this attribute
-            AccountPassword = (ConvertTo-SecureString -AsPlainText $acctpwd -force)	
-        }
-
-        New-ADUser @splat -Verbose
-    </pre>
+            <p>One of the most repetitive tasks a System Administrator will do is the creation of new user accounts. There are numerous ways one can create an account in active directory. Some prefer doing it through the User Interface, quick and simple. All one needs to do is to fill out the fields or attributes necessary depending on the need of the business.</p>
+        
+            <p>But for some people, who have the knack to make simple thing complicated. We most often try to automate the task even though it only takes less than five minutes to complete using the user-interface.</p>
+        
+            <p>To my fellow frustrated engineers out there, here's a script I prepared to automate the task:</p><br>
+        
+            <p>Start by creating variables which will store the most basic attributes of creating a new user account</p>
+            <pre id="code-block">
+        
+                $gname = 'John'
+                $lname = 'DOE'
+                $acctpwd = "whateverP@ssw0rd"
+            </pre>
+            <p>Replace the value of this attribute with an existing user wherein we will use its OU as a reference for the new user</p>
+            <pre id="code-block">
+        
+                $ref_User = jane.dove
+            </pre>
+        
+            <p>Retrieve the UPN Suffix of a single domain forest</p>
+            <pre id="code-block">
+        
+                $upnsfx = (Get-ADForest).UPNSuffixes
+            </pre>
+        
+            <p>Isolate the Organizational Unit of the existing user which was used as a reference by removing its Canonical Name</p>
+            
+            <pre id="code-block">
+        
+                $rfrnc_user = Get-ADUser $ref_User -Properties *
+                $dsn = ($rfrnc_user).DistinguishedName
+                $targetOU = $dsn.Substring($dsn.IndexOf('OU=',[System.StringComparison]::CurrentCultureIgnoreCase))
+            </pre>
+        
+            <p>This block transforms all variables for the user attributes</p>
+            
+            <pre id="code-block">
+        
+                $splat = @{
+                    Path = $targetOU
+                    Name = "$($gname) $($lname)"
+                    DisplayName = "$($gname) $($lname)"
+                    GivenName = $gname
+                    SurName = $lname
+                    UserPrincipalName = "$(($gname).ToLowerCase()).$(($lname).ToLowerCase)@$($(upnsfx))"
+                    Description = 'System Administrator' #depends on what your organization use this attribute
+                    AccountPassword = (ConvertTo-SecureString -AsPlainText $acctpwd -force)	
+                }
+        
+                New-ADUser @splat -Verbose
+            </pre>
+        </div>
+    </div>    
 </div>
 <!--{% include ouibounce.html %}-->
