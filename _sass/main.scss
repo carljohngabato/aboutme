@@ -849,19 +849,26 @@ pre {
   //max-width: 500px;
   border-radius: 1%;
 }
-
-pre[class*="language-"] {
-  position: relative;
-  margin: 5px 0 ;
-  padding: 1.75rem 0 1.75rem 1rem;
-
-  /* more stuff */
-}
-
-pre[class*="language-"] button{
+[data-copy-text] + i.material-icons {
+  transition: all 0.25s ease-in-out;
   position: absolute;
-  top: 5px;
-  right: 5px;
-
-  /* more stuff */
+  top: 0;
+  right: 0;
+  background-color: #f5f5f4;
+  padding: 0.3125rem 0.625rem;
+  color: #000;
+  border-color: #607d8b;
+  border-style: solid;
+  border-top-right-radius: 0.1875rem;
+  border-bottom-width: 0.0625rem;
+  border-left-width: 0.0625rem;
+  opacity: 0.3;
+  cursor: pointer;
+  z-index: 1;
+}
+[data-copy-text] + i.material-icons:hover,
+[data-copy-text] + i.material-icons.active {
+  background-color: #607d8b;
+  opacity: 1;
+  color: #fff;
 }
