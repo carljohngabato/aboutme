@@ -46,7 +46,7 @@ title: Blogs
             $targetOU = $dsn.Substring($dsn.IndexOf('OU=',[System.StringComparison]::CurrentCultureIgnoreCase))
             </pre>
         
-            <p>This block transforms all variables for the user attributes</p>
+            <p>Lastly transform all variables into user attributes</p>
             
             <pre id="code-block">
         
@@ -62,6 +62,38 @@ title: Blogs
             }
     
             New-ADUser @splat -Verbose
+            </pre>
+
+            <p>Combine all those components to make a whole script</p>
+            <pre id="code-block">
+                $gname = 'John'
+                $lname = 'DOE'
+                $acctpwd = "whateverP@ssw0rd"
+                $ref_User = jane.dove
+                $upnsfx = (Get-ADForest).UPNSuffixes
+                $rfrnc_user = Get-ADUser $ref_User -Properties *
+                $dsn = ($rfrnc_user).DistinguishedName
+                $targetOU = $dsn.Substring($dsn.IndexOf('OU=',[System.StringComparison]::CurrentCultureIgnoreCase))
+                $splat = @{
+                Path = $targetOU
+                Name = "$($gname) $($lname)"
+                DisplayName = "$($gname) $($lname)"
+                GivenName = $gname
+                SurName = $lname
+                UserPrincipalName = "$(($gname).ToLowerCase()).$(($lname).ToLowerCase)@$($(upnsfx))"
+                Description = 'System Administrator' #depends on what your organization use this attribute
+                AccountPassword = (ConvertTo-SecureString -AsPlainText $acctpwd -force)	
+                }
+        
+                New-ADUser @splat -Verbose    
+            </pre>
+            <p>The result would have this values</p>
+            <pre id="code-block">
+            Name -> John DOE
+            DisplayName -> John DOE
+            GivenName -> John
+            SurName -> DOE
+            UserPrincipalName -> john.doe@domain.xyz
             </pre>
         </div>
     </div>    
