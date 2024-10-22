@@ -850,17 +850,18 @@ pre {
   border-radius: 1%;
 }
 
-.copy-button {
-  position: absolute;
-  top: 2px;
-  right: 10px;
-  cursor: pointer;
-  color: #fff;
-  background: gray;
-  border-radius: 0.5em;
-  padding: 2px 7px;
+pre[class*="language-"] {
+  position: relative;
+  margin: 5px 0 ;
+  padding: 1.75rem 0 1.75rem 1rem;
+
+  /* more stuff */
 }
 
-.copy-button:hover {
-  color: #000;
+pre[class*="language-"] button{
+  position: absolute;
+  top: 5px;
+  right: 5px;
+
+  /* more stuff */
 }

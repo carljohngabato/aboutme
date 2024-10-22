@@ -1,41 +1,49 @@
-// Get the <pre> element
-const preTag = document.getElementById("code-block");
+await navigator.clipboard.writeText("some text");
 
-// Create a copy button element
-const copyButton = document.createElement("span");
-copyButton.innerText = "Copy";
-copyButton.classList.add("copy-button");
+const copyButtonLabel = "Copy Code";
 
-// Append the copy button to the <pre> tag
-preTag.appendChild(copyButton);
+// use a class selector if available
+let blocks = document.querySelectorAll("pre");
 
-// Add click event listener to the copy button
-copyButton.addEventListener("click", () => {
-  // Hide the copy button temporarily
-  copyButton.style.display = "none";
+blocks.forEach((block) => {
+  // only add button if browser supports Clipboard API
+  if (navigator.clipboard) {
+    let button = document.createElement("button");
 
-  // Create a range and select the text inside the <pre> tag
-  const range = document.createRange();
-  range.selectNode(preTag);
-  window.getSelection().removeAllRanges();
-  window.getSelection().addRange(range);
+    button.innerText = copyButtonLabel;
+    block.appendChild(button);
 
-  try {
-    // Copy the selected text to the clipboard
-    document.execCommand("copy");
-
-    // Alert the user that the text has been copied
-    copyButton.innerText = "Copied!";
-    setTimeout(function(){
-      copyButton.innerText = "Copy";
-    }, 2000);
-  } catch (err) {
-    console.error("Unable to copy text:", err);
-  } finally {
-    // Show the copy button again
-    copyButton.style.display = "inline";
-
-    // Deselect the text
-    window.getSelection().removeAllRanges();
+    button.addEventListener("click", async () => {
+      await copyCode(block);
+    });
   }
 });
+
+async function copyCode(block) {
+  let code = block.querySelector("code");
+  let text = code.innerText;
+
+  await navigator.clipboard.writeText(text);
+}
+
+block.setAttribute("tabindex", 0);
+
+button.innerText = "Code Copied";
+
+setTimeout(()=> {
+  button.innerText = copyButtonLabel;
+},700)
+
+async function copyCode(block, button) {
+  let code = block.querySelector("code");
+  let text = code.innerText;
+
+  await navigator.clipboard.writeText(text);
+
+  // visual feedback that task is completed
+  button.innerText = "Code Copied";
+
+  setTimeout(() => {
+    button.innerText = copyButtonLabel;
+  }, 700);
+}
