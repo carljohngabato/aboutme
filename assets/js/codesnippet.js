@@ -1,82 +1,41 @@
-'use strict';
+// Get the <pre> element
+const preTag = document.getElementById("copy-code");
 
-document.addEventListener('DOMContentLoaded', function() {
-	copyText.init()
+// Create a copy button element
+const copyButton = document.createElement("span");
+copyButton.innerText = "Copy";
+copyButton.classList.add("copy-button");
+
+// Append the copy button to the <pre> tag
+preTag.appendChild(copyButton);
+
+// Add click event listener to the copy button
+copyButton.addEventListener("click", () => {
+  // Hide the copy button temporarily
+  copyButton.style.display = "none";
+
+  // Create a range and select the text inside the <pre> tag
+  const range = document.createRange();
+  range.selectNode(preTag);
+  window.getSelection().removeAllRanges();
+  window.getSelection().addRange(range);
+
+  try {
+    // Copy the selected text to the clipboard
+    document.execCommand("copy");
+
+    // Alert the user that the text has been copied
+    copyButton.innerText = "Copied!";
+    setTimeout(function(){
+      copyButton.innerText = "Copy";
+    }, 2000);
+  } catch (err) {
+    console.error("Unable to copy text:", err);
+  } finally {
+    // Show the copy button again
+    copyButton.style.display = "inline";
+
+    // Deselect the text
+    window.getSelection().removeAllRanges();
+  }
 });
-
-var copyText = {
-	init: function() {
-		if (document.querySelectorAll('[data-copy-text]').length) {
-			var cp = document.querySelectorAll('[data-copy-text]');
-
-			for (var i = 0, l = cp.length; i < l; i++) {
-				copyText.addCopy(cp[i]);
-			}
-		}
-	},
-	addCopy: function(el) {
-		if (typeof el !== 'undifined') {
-			var parent = el.parentNode;
-			if (!parent.querySelectorAll('span.copy-btn').length && window.getSelection) {
-				var cpBtn = document.createElement('I');
-
-				parent.setAttribute('style', 'position:relative');
-				parent.appendChild(cpBtn);
-
-				cpBtn.classList.add('material-icons');
-				cpBtn.textContent = 'content_copy';
-				cpBtn.setAttribute('title', 'Copy Text');
-
-				copyText.addCopyEvent(cpBtn, el);
-			}
-		}
-	},
-	addCopyEvent: function(btn, el) {
-		var coppied = false;
-		var timer = 0;
-
-		function copyText() {
-			function showCheckmark() {
-				btn.textContent = 'check';
-				btn.classList.add('active');
-			}
-
-			function hideCheckmark() {
-				btn.classList.remove('active');
-				btn.textContent = 'content_copy';
-				timer = 0;
-			}
-			
-			if (timer === 0) {
-				if (window.getSelection) {
-					var selection = window.getSelection();
-					var range = document.createRange();
-					range.selectNodeContents(el);
-					selection.removeAllRanges();
-					selection.addRange(range);
-
-					try {
-						document.execCommand('copy');
-						coppied = true;
-					} catch (err) {
-						console.error(err);
-					}
-
-					selection.removeAllRanges();
-				} else {
-					console.error('your browser does not support copy');
-				}
-
-				if (coppied) {
-					clearTimeout(timer);
-					showCheckmark();
-					timer = setTimeout(hideCheckmark, 2000);
-				}
-			}
-		}
-
-		if (typeof btn !== 'undifined' && typeof el !== 'undifined') {
-			btn.addEventListener('click', copyText, false);
-		}
-	},
-}
