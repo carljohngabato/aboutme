@@ -12,27 +12,29 @@ title: Blogs
 
     <p>To my fellow frustrated engineers out there, here's a script I prepared to automate the task:</p><br>
 
-    <p>Start be creating variables which we will store the most basic attributes of creating a new user account</p>
+    <p>Start be creating variables which will store the most basic attributes of creating a new user account</p>
     <pre id="code-block">
 
         $gname = 'John'
         $lname = 'DOE'
         $acctpwd = "whateverP@ssw0rd"
-
     </pre>
     <p>Replace the value of this attribute with an existing user wherein we will use its OU as a reference for the new user</p>
     <pre id="code-block">
+
         $ref_User = jane.dove
     </pre>
 
     <p>This variable retrieves the UPN Suffix of a single domain forest</p>
     <pre id="code-block">
+
         $upnsfx = (Get-ADForest).UPNSuffixes
     </pre>
 
     <p>This code block is used as a reference for the new account to be created in the same OU</p>
     
     <pre id="code-block">
+
         $rfrnc_user = Get-ADUser $ref_User -Properties *
         $dsn = ($rfrnc_user).DistinguishedName
         $targetOU = $dsn.Substring($dsn.IndexOf('OU=',[System.StringComparison]::CurrentCultureIgnoreCase))
@@ -41,6 +43,7 @@ title: Blogs
     <p>This block transforms all variables for the user attributes</p>
     
     <pre id="code-block">
+        
         $splat = @{
             Path = $targetOU
             Name = "$($gname) $($lname)"
