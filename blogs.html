@@ -66,7 +66,13 @@ title: Blogs
 
             <p>Combine all those components to make a whole script</p>
             <pre id="code-block">
-                <code class="language-css">.some-box
+                <code class="language-css">.some-box{
+                    width: 20px;
+                    height: 20px;
+                    background: black;
+                    margin-bottom: 1.5rem;
+                }
+                </code>
 
                 $gname = 'John'
                 $lname = 'DOE'
@@ -87,8 +93,7 @@ title: Blogs
                 AccountPassword = (ConvertTo-SecureString -AsPlainText $acctpwd -force)	
                 }
         
-                New-ADUser @splat -Verbose
-                </code>    
+                New-ADUser @splat -Verbose 
             </pre>
             <p>The result would have this values when you query using Get-ADUser</p>
             <pre id="code-block">
