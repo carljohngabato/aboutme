@@ -22,46 +22,46 @@ title: Blogs
             <pre id="code-block">
         
             $gname = 'John'
-                $lname = 'DOE'
-                $acctpwd = "whateverP@ssw0rd"
+            $lname = 'DOE'
+            $acctpwd = "whateverP@ssw0rd"
             </pre>
             <p>Replace the value of this attribute with an existing user wherein we will use its OU as a reference for the new user</p>
             <pre id="code-block">
         
-                $ref_User = jane.dove
+            $ref_User = jane.dove
             </pre>
         
             <p>Retrieve the UPN Suffix of a single domain forest</p>
             <pre id="code-block">
         
-                $upnsfx = (Get-ADForest).UPNSuffixes
+            $upnsfx = (Get-ADForest).UPNSuffixes
             </pre>
         
             <p>Isolate the Organizational Unit of the existing user which was used as a reference by removing its Canonical Name</p>
             
             <pre id="code-block">
         
-                $rfrnc_user = Get-ADUser $ref_User -Properties *
-                $dsn = ($rfrnc_user).DistinguishedName
-                $targetOU = $dsn.Substring($dsn.IndexOf('OU=',[System.StringComparison]::CurrentCultureIgnoreCase))
+            $rfrnc_user = Get-ADUser $ref_User -Properties *
+            $dsn = ($rfrnc_user).DistinguishedName
+            $targetOU = $dsn.Substring($dsn.IndexOf('OU=',[System.StringComparison]::CurrentCultureIgnoreCase))
             </pre>
         
             <p>This block transforms all variables for the user attributes</p>
             
             <pre id="code-block">
         
-                $splat = @{
-                    Path = $targetOU
-                    Name = "$($gname) $($lname)"
-                    DisplayName = "$($gname) $($lname)"
-                    GivenName = $gname
-                    SurName = $lname
-                    UserPrincipalName = "$(($gname).ToLowerCase()).$(($lname).ToLowerCase)@$($(upnsfx))"
-                    Description = 'System Administrator' #depends on what your organization use this attribute
-                    AccountPassword = (ConvertTo-SecureString -AsPlainText $acctpwd -force)	
-                }
-        
-                New-ADUser @splat -Verbose
+            $splat = @{
+            Path = $targetOU
+            Name = "$($gname) $($lname)"
+            DisplayName = "$($gname) $($lname)"
+            GivenName = $gname
+            SurName = $lname
+            UserPrincipalName = "$(($gname).ToLowerCase()).$(($lname).ToLowerCase)@$($(upnsfx))"
+            Description = 'System Administrator' #depends on what your organization use this attribute
+            AccountPassword = (ConvertTo-SecureString -AsPlainText $acctpwd -force)	
+            }
+    
+            New-ADUser @splat -Verbose
             </pre>
         </div>
     </div>    
