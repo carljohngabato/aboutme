@@ -1,49 +1,82 @@
-await navigator.clipboard.writeText("some text");
+'use strict';
 
-const copyButtonLabel = "Copy Code";
-
-// use a class selector if available
-let blocks = document.querySelectorAll("pre");
-
-blocks.forEach((block) => {
-  // only add button if browser supports Clipboard API
-  if (navigator.clipboard) {
-    let button = document.createElement("button");
-
-    button.innerText = copyButtonLabel;
-    block.appendChild(button);
-
-    button.addEventListener("click", async () => {
-      await copyCode(block);
-    });
-  }
+document.addEventListener('DOMContentLoaded', function() {
+	copyText.init()
 });
 
-async function copyCode(block) {
-  let code = block.querySelector("code");
-  let text = code.innerText;
+var copyText = {
+	init: function() {
+		if (document.querySelectorAll('[data-copy-text]').length) {
+			var cp = document.querySelectorAll('[data-copy-text]');
 
-  await navigator.clipboard.writeText(text);
-}
+			for (var i = 0, l = cp.length; i < l; i++) {
+				copyText.addCopy(cp[i]);
+			}
+		}
+	},
+	addCopy: function(el) {
+		if (typeof el !== 'undifined') {
+			var parent = el.parentNode;
+			if (!parent.querySelectorAll('span.copy-btn').length && window.getSelection) {
+				var cpBtn = document.createElement('I');
 
-block.setAttribute("tabindex", 0);
+				parent.setAttribute('style', 'position:relative');
+				parent.appendChild(cpBtn);
 
-button.innerText = "Code Copied";
+				cpBtn.classList.add('material-icons');
+				cpBtn.textContent = 'content_copy';
+				cpBtn.setAttribute('title', 'Copy Text');
 
-setTimeout(()=> {
-  button.innerText = copyButtonLabel;
-},700)
+				copyText.addCopyEvent(cpBtn, el);
+			}
+		}
+	},
+	addCopyEvent: function(btn, el) {
+		var coppied = false;
+		var timer = 0;
 
-async function copyCode(block, button) {
-  let code = block.querySelector("code");
-  let text = code.innerText;
+		function copyText() {
+			function showCheckmark() {
+				btn.textContent = 'check';
+				btn.classList.add('active');
+			}
 
-  await navigator.clipboard.writeText(text);
+			function hideCheckmark() {
+				btn.classList.remove('active');
+				btn.textContent = 'content_copy';
+				timer = 0;
+			}
+			
+			if (timer === 0) {
+				if (window.getSelection) {
+					var selection = window.getSelection();
+					var range = document.createRange();
+					range.selectNodeContents(el);
+					selection.removeAllRanges();
+					selection.addRange(range);
 
-  // visual feedback that task is completed
-  button.innerText = "Code Copied";
+					try {
+						document.execCommand('copy');
+						coppied = true;
+					} catch (err) {
+						console.error(err);
+					}
 
-  setTimeout(() => {
-    button.innerText = copyButtonLabel;
-  }, 700);
+					selection.removeAllRanges();
+				} else {
+					console.error('your browser does not support copy');
+				}
+
+				if (coppied) {
+					clearTimeout(timer);
+					showCheckmark();
+					timer = setTimeout(hideCheckmark, 2000);
+				}
+			}
+		}
+
+		if (typeof btn !== 'undifined' && typeof el !== 'undifined') {
+			btn.addEventListener('click', copyText, false);
+		}
+	},
 }
