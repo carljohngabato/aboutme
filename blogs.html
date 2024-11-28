@@ -67,26 +67,26 @@ title: Blogs
             <p>Combine all those components to make a whole script</p>
             <pre id="copy-code">
 
-                $gname = 'John'
-                $lname = 'DOE'
-                $acctpwd = "whateverP@ssw0rd"
-                $ref_User = jane.dove
-                $upnsfx = (Get-ADForest).UPNSuffixes
-                $rfrnc_user = Get-ADUser $ref_User -Properties *
-                $dsn = ($rfrnc_user).DistinguishedName
-                $targetOU = $dsn.Substring($dsn.IndexOf('OU=',[System.StringComparison]::CurrentCultureIgnoreCase))
-                $splat = @{
-                    Path = $targetOU
-                    Name = "$($gname) $($lname)"
-                    DisplayName = "$($gname) $($lname)"
-                    GivenName = $gname
-                    SurName = $lname
-                    UserPrincipalName = "$(($gname).ToLowerCase()).$(($lname).ToLowerCase)@$($(upnsfx))"
-                    Description = 'System Administrator' #depends on what your organization use this attribute
-                    AccountPassword = (ConvertTo-SecureString -AsPlainText $acctpwd -force)	
-                }
-        
-                New-ADUser @splat -Verbose 
+            $gname = 'John'
+            $lname = 'DOE'
+            $acctpwd = "whateverP@ssw0rd"
+            $ref_User = jane.dove
+            $upnsfx = (Get-ADForest).UPNSuffixes
+            $rfrnc_user = Get-ADUser $ref_User -Properties *
+            $dsn = ($rfrnc_user).DistinguishedName
+            $targetOU = $dsn.Substring($dsn.IndexOf('OU=',[System.StringComparison]::CurrentCultureIgnoreCase))
+            $splat = @{
+                Path = $targetOU
+                Name = "$($gname) $($lname)"
+                DisplayName = "$($gname) $($lname)"
+                GivenName = $gname
+                SurName = $lname
+                UserPrincipalName = "$(($gname).ToLowerCase()).$(($lname).ToLowerCase)@$($(upnsfx))"
+                Description = 'System Administrator' #depends on what your organization use this attribute
+                AccountPassword = (ConvertTo-SecureString -AsPlainText $acctpwd -force)	
+            }
+    
+            New-ADUser @splat -Verbose 
             </pre>
             <p>When the script is executed as-is, the result would return these values after you query using Get-ADUser -Identity john.doe</p>
             <pre id="code-block">
