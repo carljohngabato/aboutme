@@ -76,14 +76,14 @@ title: Blogs
                 $dsn = ($rfrnc_user).DistinguishedName
                 $targetOU = $dsn.Substring($dsn.IndexOf('OU=',[System.StringComparison]::CurrentCultureIgnoreCase))
                 $splat = @{
-                Path = $targetOU
-                Name = "$($gname) $($lname)"
-                DisplayName = "$($gname) $($lname)"
-                GivenName = $gname
-                SurName = $lname
-                UserPrincipalName = "$(($gname).ToLowerCase()).$(($lname).ToLowerCase)@$($(upnsfx))"
-                Description = 'System Administrator' #depends on what your organization use this attribute
-                AccountPassword = (ConvertTo-SecureString -AsPlainText $acctpwd -force)	
+                    Path = $targetOU
+                    Name = "$($gname) $($lname)"
+                    DisplayName = "$($gname) $($lname)"
+                    GivenName = $gname
+                    SurName = $lname
+                    UserPrincipalName = "$(($gname).ToLowerCase()).$(($lname).ToLowerCase)@$($(upnsfx))"
+                    Description = 'System Administrator' #depends on what your organization use this attribute
+                    AccountPassword = (ConvertTo-SecureString -AsPlainText $acctpwd -force)	
                 }
         
                 New-ADUser @splat -Verbose 
