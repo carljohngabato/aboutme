@@ -26,13 +26,15 @@ title: Blogs
     $lname = 'DOE'
     $acctpwd = "whateverP@ssw0rd"
             </pre>
-            <p>On the next part, we will create another variable and use a reference account which our new account will become part of that team/department/role.</p>
+            <p>On the next part, we use a reference account and store it in a variable.
+                I use this technique in order to retrieve the details I will input to the new account.
+                The only thing to note here is that the new account will be in the same department or role of the reference account. </p>
             <pre id="code-block">
         
     $ref_User = jane.dove
             </pre>            
 
-            <p>Create another variable and retrieve the UPN Suffix of a single domain forest which will be used later on the script.</p>
+            <p>Retrieve the domain name in your AD Forest. Store the value in a variable and of the UPN Suffix which will be used later on the script.</p>
             <pre id="code-block">
         
     $upnsfx = (Get-ADForest).UPNSuffixes
