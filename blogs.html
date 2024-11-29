@@ -34,13 +34,17 @@ title: Blogs
     $ref_User = jane.dove
             </pre>            
 
-            <p>Retrieve the domain name in your AD Forest. Store the value in a variable and of the UPN Suffix which will be used later on the script.</p>
+            <p>I will need to retrieve the domain name of the AD Forest.
+                Store the value in a variable and which will be used later on the script as the UPN Suffix.</p>
             <pre id="code-block">
         
     $upnsfx = (Get-ADForest).UPNSuffixes
             </pre>
         
-            <p>To isolate the value of Organizational Unit (OU) of the reference account, we need to remove its Canonical Name</p>
+            <p>I will also need the OU location where the new account will be added.
+                The 1st line will retrieve all the attributes of the reference account.
+                The 2nd line will select only the DistinguishedName attribute.
+                The 3rd line will isolate the value of Organizational Unit (OU) of the reference account.</p>
             
             <pre id="code-block">
         
@@ -49,7 +53,7 @@ title: Blogs
     $targetOU = $dsn.Substring($dsn.IndexOf('OU=',[System.StringComparison]::CurrentCultureIgnoreCase))
             </pre>
         
-            <p>And lastly we assign all values retrieved into the account attributes</p>
+            <p>And lastly I will assign all values stored in my variables into the account attributes.</p>
             
             <pre id="code-block">
         
@@ -67,7 +71,7 @@ title: Blogs
     New-ADUser @splat -Verbose
             </pre>
 
-            <p>Combine all those components to make a whole script</p>
+            <p>Combine all those components to make a whole script.</p>
             <pre id="copy-code">
 
     $gname = 'John'
@@ -91,7 +95,7 @@ title: Blogs
 
     New-ADUser @splat -Verbose 
             </pre>
-            <p>When the script is executed as-is, the result would return these values after you query using Get-ADUser -Identity john.doe</p>
+            <p>When the script is executed as-is, the result would return these values after you query using "Get-ADUser -Identity john.doe".</p>
             <pre id="code-block">
 
     Name -> John DOE
