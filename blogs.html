@@ -51,16 +51,16 @@ title: Blogs
             
             <pre id="code-block">
         
-            $splat = @{
-                Path = $targetOU
-                Name = "$($gname) $($lname)"
-                DisplayName = "$($gname) $($lname)"
-                GivenName = $gname
-                SurName = $lname
-                UserPrincipalName = "$(($gname).ToLowerCase()).$(($lname).ToLowerCase)@$($(upnsfx))"
-                Description = 'System Administrator' #depends on what your organization use this attribute
-                AccountPassword = (ConvertTo-SecureString -AsPlainText $acctpwd -force)	
-            }
+$splat = @{
+    Path = $targetOU
+    Name = "$($gname) $($lname)"
+    DisplayName = "$($gname) $($lname)"
+    GivenName = $gname
+    SurName = $lname
+    UserPrincipalName = "$(($gname).ToLowerCase()).$(($lname).ToLowerCase)@$($(upnsfx))"
+    Description = 'System Administrator' #depends on what your organization use this attribute
+    AccountPassword = (ConvertTo-SecureString -AsPlainText $acctpwd -force)	
+}
     
             New-ADUser @splat -Verbose
             </pre>
