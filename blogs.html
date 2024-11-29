@@ -22,82 +22,82 @@ title: Blogs
             <p>We start by assigning values to our variables which will store the most basic attributes for the new account</p>
             <pre id="code-block">
         
-            $gname = 'John'
-            $lname = 'DOE'
-            $acctpwd = "whateverP@ssw0rd"
+    $gname = 'John'
+    $lname = 'DOE'
+    $acctpwd = "whateverP@ssw0rd"
             </pre>
             <p>On the next part, we will create another variable and use a reference account which our new account will become part of that team/department/role.</p>
             <pre id="code-block">
         
-            $ref_User = jane.dove
+    $ref_User = jane.dove
             </pre>            
 
             <p>Create another variable and retrieve the UPN Suffix of a single domain forest which will be used later on the script.</p>
             <pre id="code-block">
         
-            $upnsfx = (Get-ADForest).UPNSuffixes
+    $upnsfx = (Get-ADForest).UPNSuffixes
             </pre>
         
             <p>To isolate the value of Organizational Unit (OU) of the reference account, we need to remove its Canonical Name</p>
             
             <pre id="code-block">
         
-            $rfrnc_user = Get-ADUser $ref_User -Properties *
-            $dsn = ($rfrnc_user).DistinguishedName
-            $targetOU = $dsn.Substring($dsn.IndexOf('OU=',[System.StringComparison]::CurrentCultureIgnoreCase))
+    $rfrnc_user = Get-ADUser $ref_User -Properties *
+    $dsn = ($rfrnc_user).DistinguishedName
+    $targetOU = $dsn.Substring($dsn.IndexOf('OU=',[System.StringComparison]::CurrentCultureIgnoreCase))
             </pre>
         
             <p>And lastly we assign all values retrieved into the account attributes</p>
             
             <pre id="code-block">
         
-$splat = @{
-    Path = $targetOU
-    Name = "$($gname) $($lname)"
-    DisplayName = "$($gname) $($lname)"
-    GivenName = $gname
-    SurName = $lname
-    UserPrincipalName = "$(($gname).ToLowerCase()).$(($lname).ToLowerCase)@$($(upnsfx))"
-    Description = 'System Administrator' #depends on what your organization use this attribute
-    AccountPassword = (ConvertTo-SecureString -AsPlainText $acctpwd -force)	
-}
-    
-            New-ADUser @splat -Verbose
+    $splat = @{
+        Path = $targetOU
+        Name = "$($gname) $($lname)"
+        DisplayName = "$($gname) $($lname)"
+        GivenName = $gname
+        SurName = $lname
+        UserPrincipalName = "$(($gname).ToLowerCase()).$(($lname).ToLowerCase)@$($(upnsfx))"
+        Description = 'System Administrator' #depends on what your organization use this attribute
+        AccountPassword = (ConvertTo-SecureString -AsPlainText $acctpwd -force)	
+    }
+        
+    New-ADUser @splat -Verbose
             </pre>
 
             <p>Combine all those components to make a whole script</p>
             <pre id="copy-code">
 
-            $gname = 'John'
-            $lname = 'DOE'
-            $acctpwd = "whateverP@ssw0rd"
-            $ref_User = jane.dove
-            $upnsfx = (Get-ADForest).UPNSuffixes
-            $rfrnc_user = Get-ADUser $ref_User -Properties *
-            $dsn = ($rfrnc_user).DistinguishedName
-            $targetOU = $dsn.Substring($dsn.IndexOf('OU=',[System.StringComparison]::CurrentCultureIgnoreCase))
-            $splat = @{
-                Path = $targetOU
-                Name = "$($gname) $($lname)"
-                DisplayName = "$($gname) $($lname)"
-                GivenName = $gname
-                SurName = $lname
-                UserPrincipalName = "$(($gname).ToLowerCase()).$(($lname).ToLowerCase)@$($(upnsfx))"
-                Description = 'System Administrator' #depends on what your organization use this attribute
-                AccountPassword = (ConvertTo-SecureString -AsPlainText $acctpwd -force)	
-            }
-    
-            New-ADUser @splat -Verbose 
+    $gname = 'John'
+    $lname = 'DOE'
+    $acctpwd = "whateverP@ssw0rd"
+    $ref_User = jane.dove
+    $upnsfx = (Get-ADForest).UPNSuffixes
+    $rfrnc_user = Get-ADUser $ref_User -Properties *
+    $dsn = ($rfrnc_user).DistinguishedName
+    $targetOU = $dsn.Substring($dsn.IndexOf('OU=',[System.StringComparison]::CurrentCultureIgnoreCase))
+    $splat = @{
+        Path = $targetOU
+        Name = "$($gname) $($lname)"
+        DisplayName = "$($gname) $($lname)"
+        GivenName = $gname
+        SurName = $lname
+        UserPrincipalName = "$(($gname).ToLowerCase()).$(($lname).ToLowerCase)@$($(upnsfx))"
+        Description = 'System Administrator' #depends on what your organization use this attribute
+        AccountPassword = (ConvertTo-SecureString -AsPlainText $acctpwd -force)	
+    }
+
+    New-ADUser @splat -Verbose 
             </pre>
             <p>When the script is executed as-is, the result would return these values after you query using Get-ADUser -Identity john.doe</p>
             <pre id="code-block">
 
-            Name -> John DOE
-            DisplayName -> John DOE
-            GivenName -> John
-            SurName -> DOE
-            UserPrincipalName -> john.doe@domain.xyz
-            DistinguishedName -> CN=John DOE,OU=IT,OU=User,DC=domain-xyz,DC=local
+    Name -> John DOE
+    DisplayName -> John DOE
+    GivenName -> John
+    SurName -> DOE
+    UserPrincipalName -> john.doe@domain.xyz
+    DistinguishedName -> CN=John DOE,OU=IT,OU=User,DC=domain-xyz,DC=local
             </pre>
         </div>
     </div>    
