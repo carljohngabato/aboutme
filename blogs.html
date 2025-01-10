@@ -127,11 +127,12 @@ title: Blogs
                 
                 <p>Connect to your SharePoint admin center using your admin account</p>
                 <pre>
-    $adminSiteUrl = "https://<yourtenantname>-admin.sharepoint.com"
+    $adminSiteUrl = "https://'<'yourtenantname'>'-admin.sharepoint.com"
     Connect-SPOService -Url $adminSiteUrl
                 </pre>
 
-                <p>Create your variable to store the following details:
+                <p>
+                    Create your variable to store the following details:
                     "$realOwner" refers to the user account who truly owns the folder/file.
                     "$siteURL" refers to the OneDrive URL of the $realOwner.
                 </p>
@@ -140,7 +141,8 @@ title: Blogs
     $siteURL = Get-SPOSite -IncludePersonalSite $true -Limit All -Filter "Url -like '-my.sharepoint.com/personal/'" | ?{$_.Url -like "${$realOwner}"}
                 </pre>
                 
-                <p>This part of the script is to determine who are the user/s with the "Owner" permission of the person who reported the issue.
+                <p>
+                    This part of the script is to determine who are the user/s with the "Owner" permission of the person who reported the issue.
                     Using the Get-SPOUser, we target the OneDrive URL of the "$realOwner" by calling the "-Site" parameter and filtering the property "IsSiteAdmin"
                     that is the equivalent of the "Owner" permission.
                 </p>
@@ -148,11 +150,14 @@ title: Blogs
     Get-SPOUser -Site $siteURL.Url | ?{$_.IsSiteAdmin -eq $true}
                 </pre>
     
-                <p>Lastly, we remove the list of user/s that shouldn't have the "Owner" permission of a folder they don't normally own.
-
+                <p>
+                    Lastly, we remove the list of user/s that shouldn't have the "Owner" permission of a folder they don't normally own.
+                    Using the Set-SPOUser, we again target the OneDrive URL of the "$realOwner" by calling the "-Site" paramater, then we 
+                    associate this with "-LoginName" paramater and assign the "$userToRemove" variable and issue the "-IsSiteCollectionAdmin" paramater to "$false"
+                    to remove the permission.
                 </p>
                 <pre>
-    $userToRemove = Read-Host "Enter the Login Name fo the user displayed previously using the Get-SPOUser command"
+    $userToRemove = Read-Host "Input LoginName, refer to Get-SPOUser command result"
     Set-SPOUser -Site $siteURL -LoginName $userToRemove -IsSiteCollectionAdmin $false
                 </pre>
             </div>
