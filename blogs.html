@@ -22,23 +22,24 @@ title: Blogs
         
             <p>To my fellow engineers out there, here's a script I have derived to automate the task:</p><br>
         
-            <p>I will start by assigning values to my variables, these 3 are the most basic attributes for the new account.</p>
+            <p>I will start by assigning static values to my variables, in case you're wondering why there are only 3 variables;
+                We will get to the explanation later in the details below.</p>
             <pre id="code-block">
         
     $gname = 'John'
     $lname = 'DOE'
     $acctpwd = "whateverP@ssw0rd"
             </pre>
-            <p>On the next part, I will use a reference account and store it in a variable.
-                I use this technique in order to retrieve the details I will input to the new account.
+            <p>On the next part, I will use a reference account which is an existing user in the AD and store it in a variable called "$ref_User".
+                I use this technique to retrieve the user account details I will copy to the new user account.
                 The only thing to note here is that the new account will be in the same department or role of the reference account. </p>
             <pre id="code-block">
         
     $ref_User = jane.dove
             </pre>            
 
-            <p>I will need to retrieve the domain name of the AD Forest.
-                Store the value in a variable and which will be used later on the script as the UPN Suffix.</p>
+            <p>I will also retrieve the domain name of the AD Forest.
+                Then store "that" value in a variable call "$upnsfx", which will be used later on the script as the UPN Suffix.</p>
             <pre id="code-block">
         
     $upnsfx = (Get-ADForest).UPNSuffixes
@@ -46,8 +47,8 @@ title: Blogs
         
             <p>I will also need the OU location where the new account will be added.
                 The 1st line will retrieve all the attributes of the reference account.
-                The 2nd line will select only the DistinguishedName attribute.
-                The 3rd line will isolate the value of Organizational Unit (OU) of the reference account.</p>
+                The 2nd line will select only the DistinguishedName attribute of the same reference account.
+                The 3rd line will isolate the string value of the Organizational Unit (OU) of that same reference account.</p>
             
             <pre id="code-block">
         
@@ -56,7 +57,7 @@ title: Blogs
     $targetOU = $dsn.Substring($dsn.IndexOf('OU=',[System.StringComparison]::CurrentCultureIgnoreCase))
             </pre>
         
-            <p>And lastly I will assign all values stored in my variables into the account attributes.</p>
+            <p>And lastly I will assign all values that was stored in those variables into the new user account attributes.</p>
             
             <pre id="code-block">
         
