@@ -838,13 +838,13 @@ body {
   background: #ffe4c4;
 }
 .flexbox-wrapper{
-  display: flex;
+  display: flex !important;
   overflow: auto;
 }
 .sticky-column{
   position: sticky !important;
   position: -webkit-sticky !important;
-  justify-content: flex-start;
+  align-self: flex-start !important;
 }
 pre {
   position: relative;
