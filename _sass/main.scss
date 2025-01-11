@@ -847,6 +847,7 @@ body {
   align-self: flex-start !important;
   flex-flow: nowrap !important;
   z-index: 1020 !important;
+  text-align: right;
 }
 pre {
   position: relative;
@@ -858,6 +859,9 @@ pre {
   border: 1px solid #e6e7e9;
   //max-width: 500px;
   border-radius: 1%;
+}
+.code-block{
+  overflow: scroll !important;
 }
 .copy-button {
   position: absolute;
