@@ -840,6 +840,9 @@ body {
 .fixed-column{
   position: sticky;
   position: -webkit-sticky;
+  position: absolute;
+  overflow-x: scroll;
+  overflow-y: visible;
 }
 pre {
   position: relative;
