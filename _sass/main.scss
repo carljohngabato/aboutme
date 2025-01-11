@@ -839,7 +839,7 @@ body {
 }
 #index{
   position: sticky;
-  
+  position: -webkit-sticky;
 }
 pre {
   position: relative;
