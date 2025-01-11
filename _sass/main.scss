@@ -837,11 +837,14 @@ img.over-icn:hover{
 body {
   background: #ffe4c4;
 }
-#fixed-column{
+.flexbox-wrapper{
+  display: flex;
+  overflow: auto;
+}
+.sticky-column{
   position: sticky;
   position: -webkit-sticky;
-  overflow-x: visible;
-  overflow-y: scroll;
+  align-self: flex-start;
 }
 pre {
   position: relative;
