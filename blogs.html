@@ -136,7 +136,7 @@ Connect-SPOService -Url $adminSiteUrl
                 "$realOwner" refers to the user account who truly owns the folder/file.
                 "$siteURL" refers to the OneDrive URL of the $realOwner.
             </p>
-            <pre>
+            <pre class="code-block">
 $realOwner = Read-host "Input the username without the @domain.com"
 $siteURL = Get-SPOSite -IncludePersonalSite $true -Limit All -Filter "Url -like '-my.sharepoint.com/personal/'" | ?{$_.Url -like "${$realOwner}"}
             </pre>
