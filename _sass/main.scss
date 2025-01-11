@@ -841,8 +841,8 @@ body {
   position: sticky;
   position: -webkit-sticky;
   position: absolute;
-  overflow-x: scroll;
-  overflow-y: visible;
+  overflow-x: visible;
+  overflow-y: scroll;
 }
 pre {
   position: relative;
