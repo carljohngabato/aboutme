@@ -837,7 +837,9 @@ img.over-icn:hover{
 body {
   background: #ffe4c4;
 }
-
+#index{
+  position: absolute;
+}
 pre {
   position: relative;
   background: #d3d6db;
@@ -849,7 +851,7 @@ pre {
   //max-width: 500px;
   border-radius: 1%;
 }
-.copy-code {
+.copy-button {
   position: absolute;
   top: 5px;
   right: 5px;
@@ -860,6 +862,6 @@ pre {
   padding: 2px 7px;
 }
 
-.copy-code:hover {
+.copy-button:hover {
   color: #000;
 }
