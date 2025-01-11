@@ -5,163 +5,173 @@ title: Blogs
 
 <div class="container t-container">
     <div class="row">
-        <div class="col-lg-4" id="fixed-column"> 
-            <h4>Index</h4>
-            <p><a href="#new-aduser">New-ADuser on Specific OU</a></p>
-            <p><a href="#set-spouser">Set-SPOUser Remove User Permission</a></p>
-        </div>
-        <div class="col-lg-8">
-            <div id="new-aduser" class="col-lg-12">
+        <table>
+            <thead>
+                <tr>
+                    <th id="fixed-column">                        
+                        <div class="col-lg-4" > 
+                            <h4>Index</h4>
+                            <p><a href="#new-aduser">New-ADuser on Specific OU</a></p>
+                            <p><a href="#set-spouser">Set-SPOUser Remove User Permission</a></p>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="col-lg-8">
+                            <div id="new-aduser" class="col-lg-12">
+                                
+                            <h1 style="text-align: Left;" id="new-aduser">Active Directory: Create New User Programatically</h1>
+                            <h2 style="text-align: left;" id="new-aduser">New-ADUser in a specific OU</h2><br>
                 
-            <h1 style="text-align: Left;" id="new-aduser">Active Directory: Create New User Programatically</h1>
-            <h2 style="text-align: left;" id="new-aduser">New-ADUser in a specific OU</h2><br>
-
-            <p>One of the most repetitive tasks System Administrators perform on a daily basis is the creation of user accounts. There are several approaches the technician can create a new account in Active Directory. Some prefer doing it through the User Interface(GUI), quick and simple. All one needs to do is to fill out the fields or attributes following the standards of the business.</p>
-        
-            <p>But for some of us, who don't want to spend a few of our precious minutes; we like to make it quick and simple.</p>
-        
-            <p>To my fellow engineers out there, here's a script I have derived to automate the task:</p><br>
-        
-            <p>I will start by assigning static values to my variables, in case you're wondering why there are only 3 variables;
-                We will get to the explanation later in the details below.</p>
-            <pre id="code-block">
-        
-    $gname = 'John'
-    $lname = 'DOE'
-    $acctpwd = "whateverP@ssw0rd"
-            </pre>
-            <p>On the next part, I will use a reference account which is an existing user in the AD and store it in a variable called "$ref_User".
-                I use this technique to retrieve the user account details that I will copy into the new user account.
-                The only thing to note here is that the new account will be in the same department or role of the reference account. </p>
-            <pre id="code-block">
-        
-    $ref_User = jane.dove
-            </pre>            
-
-            <p>I will also retrieve the domain name of the AD Forest.
-                Then store "that" value in a variable call "$upnsfx", which will be used later on the script as the UPN Suffix.</p>
-            <pre id="code-block">
-        
-    $upnsfx = (Get-ADForest).UPNSuffixes
-            </pre>
-        
-            <p>I will also need the OU location where the new account will be added.
-                The 1st line will retrieve all the attributes of the reference account.
-                The 2nd line will select only the DistinguishedName attribute of the same reference account.
-                The 3rd line will isolate the string value of the Organizational Unit (OU) of that same reference account.</p>
-            
-            <pre id="code-block">
-        
-    $rfrnc_user = Get-ADUser $ref_User -Properties *
-    $dsn = ($rfrnc_user).DistinguishedName
-    $targetOU = $dsn.Substring($dsn.IndexOf('OU=',[System.StringComparison]::CurrentCultureIgnoreCase))
-            </pre>
-        
-            <p>And lastly I will assign all values that was stored in those variables into the new user account attributes.</p>
-            
-            <pre id="code-block">
-        
-    $splat = @{
-        Path = $targetOU
-        Name = "$($gname) $($lname)"
-        DisplayName = "$($gname) $($lname)"
-        GivenName = $gname
-        SurName = $lname
-        UserPrincipalName = "$(($gname).ToLowerCase()).$(($lname).ToLowerCase)@$($(upnsfx))"
-        Description = 'System Administrator' #depends on what your organization use this attribute
-        AccountPassword = (ConvertTo-SecureString -AsPlainText $acctpwd -force)	
-    }
-        
-    New-ADUser @splat -Verbose
-            </pre>
-
-            <p>Combine all those components to make a whole script.</p>
-            <pre id="copy-code">
-
-    $gname = 'John'
-    $lname = 'DOE'
-    $acctpwd = "whateverP@ssw0rd"
-    $ref_User = jane.dove
-    $upnsfx = (Get-ADForest).UPNSuffixes
-    $rfrnc_user = Get-ADUser $ref_User -Properties *
-    $dsn = ($rfrnc_user).DistinguishedName
-    $targetOU = $dsn.Substring($dsn.IndexOf('OU=',[System.StringComparison]::CurrentCultureIgnoreCase))
-    $splat = @{
-        Path = $targetOU
-        Name = "$($gname) $($lname)"
-        DisplayName = "$($gname) $($lname)"
-        GivenName = $gname
-        SurName = $lname
-        UserPrincipalName = "$(($gname).ToLowerCase()).$(($lname).ToLowerCase)@$($(upnsfx))"
-        Description = 'System Administrator' #depends on what your organization use this attribute
-        AccountPassword = (ConvertTo-SecureString -AsPlainText $acctpwd -force)	
-    }
-
-    New-ADUser @splat -Verbose 
-            </pre>
-            <p>When the script is executed as-is, the result would return these values after you query using "Get-ADUser -Identity john.doe".</p>
-            <pre id="code-block">
-
-    Name -> John DOE
-    DisplayName -> John DOE
-    GivenName -> John
-    SurName -> DOE
-    UserPrincipalName -> john.doe@domain.xyz
-    DistinguishedName -> CN=John DOE,OU=IT,OU=User,DC=domain-xyz,DC=local
-            </pre>
-            </div>
-            <br>
-            <div id="set-spouser" class="col-lg-12">                
-                <h1 style="text-align: Left;" id="set-spouser">OneDrive: Remove Owner Permission</h1>
-                <h2 style="text-align: left;" id="set-spouser">Using PowerShell</h2><br>
-
-                <p>One of my junior colleagues received a support request related to OneDrive folder permissions.
-                    Initially, my assumption on that case was as simple as remotely accessing the end-user computer and remove the permission via GUI.
-                    However, that colleague later found out that it was a little bit complicated than the usual. The permission that was attached to the folder as an "Owner" permission.
-
-                    Given the fact that this might occur more than once, I derived a script that they can use later on by just simply inputting the details
-                    of the real owner and the other user with an "Owner" permission.
-                </p>
-
-                <p>Assuming that you already have the PS Module installed on your local computer, you can copy the script below:</p>
+                            <p>One of the most repetitive tasks System Administrators perform on a daily basis is the creation of user accounts. There are several approaches the technician can create a new account in Active Directory. Some prefer doing it through the User Interface(GUI), quick and simple. All one needs to do is to fill out the fields or attributes following the standards of the business.</p>
+                        
+                            <p>But for some of us, who don't want to spend a few of our precious minutes; we like to make it quick and simple.</p>
+                        
+                            <p>To my fellow engineers out there, here's a script I have derived to automate the task:</p><br>
+                        
+                            <p>I will start by assigning static values to my variables, in case you're wondering why there are only 3 variables;
+                                We will get to the explanation later in the details below.</p>
+                            <pre id="code-block">
+                        
+                    $gname = 'John'
+                    $lname = 'DOE'
+                    $acctpwd = "whateverP@ssw0rd"
+                            </pre>
+                            <p>On the next part, I will use a reference account which is an existing user in the AD and store it in a variable called "$ref_User".
+                                I use this technique to retrieve the user account details that I will copy into the new user account.
+                                The only thing to note here is that the new account will be in the same department or role of the reference account. </p>
+                            <pre id="code-block">
+                        
+                    $ref_User = jane.dove
+                            </pre>            
                 
-                <p>Connect to your SharePoint admin center using your admin account</p>
-                <pre>
-    $adminSiteUrl = "https://'<'yourtenantname'>'-admin.sharepoint.com"
-    Connect-SPOService -Url $adminSiteUrl
-                </pre>
-
-                <p>
-                    Create your variable to store the following details:
-                    "$realOwner" refers to the user account who truly owns the folder/file.
-                    "$siteURL" refers to the OneDrive URL of the $realOwner.
-                </p>
-                <pre>
-    $realOwner = Read-host "Input the username without the @domain.com"
-    $siteURL = Get-SPOSite -IncludePersonalSite $true -Limit All -Filter "Url -like '-my.sharepoint.com/personal/'" | ?{$_.Url -like "${$realOwner}"}
-                </pre>
+                            <p>I will also retrieve the domain name of the AD Forest.
+                                Then store "that" value in a variable call "$upnsfx", which will be used later on the script as the UPN Suffix.</p>
+                            <pre id="code-block">
+                        
+                    $upnsfx = (Get-ADForest).UPNSuffixes
+                            </pre>
+                        
+                            <p>I will also need the OU location where the new account will be added.
+                                The 1st line will retrieve all the attributes of the reference account.
+                                The 2nd line will select only the DistinguishedName attribute of the same reference account.
+                                The 3rd line will isolate the string value of the Organizational Unit (OU) of that same reference account.</p>
+                            
+                            <pre id="code-block">
+                        
+                    $rfrnc_user = Get-ADUser $ref_User -Properties *
+                    $dsn = ($rfrnc_user).DistinguishedName
+                    $targetOU = $dsn.Substring($dsn.IndexOf('OU=',[System.StringComparison]::CurrentCultureIgnoreCase))
+                            </pre>
+                        
+                            <p>And lastly I will assign all values that was stored in those variables into the new user account attributes.</p>
+                            
+                            <pre id="code-block">
+                        
+                    $splat = @{
+                        Path = $targetOU
+                        Name = "$($gname) $($lname)"
+                        DisplayName = "$($gname) $($lname)"
+                        GivenName = $gname
+                        SurName = $lname
+                        UserPrincipalName = "$(($gname).ToLowerCase()).$(($lname).ToLowerCase)@$($(upnsfx))"
+                        Description = 'System Administrator' #depends on what your organization use this attribute
+                        AccountPassword = (ConvertTo-SecureString -AsPlainText $acctpwd -force)	
+                    }
+                        
+                    New-ADUser @splat -Verbose
+                            </pre>
                 
-                <p>
-                    This part of the script is to determine who are the user/s with the "Owner" permission of the person who reported the issue.
-                    Using the Get-SPOUser, we target the OneDrive URL of the "$realOwner" by calling the "-Site" parameter and filtering the property "IsSiteAdmin"
-                    that is the equivalent of the "Owner" permission.
-                </p>
-                <pre>                    
-    Get-SPOUser -Site $siteURL.Url | ?{$_.IsSiteAdmin -eq $true}
-                </pre>
-    
-                <p>
-                    Lastly, we remove the list of user/s that shouldn't have the "Owner" permission of a folder they don't normally own.
-                    Using the Set-SPOUser, we again target the OneDrive URL of the "$realOwner" by calling the "-Site" paramater, then we 
-                    associate this with "-LoginName" paramater and assign the "$userToRemove" variable and issue the "-IsSiteCollectionAdmin" paramater to "$false"
-                    to remove the permission.
-                </p>
-                <pre>
-    $userToRemove = Read-Host "Input LoginName, refer to Get-SPOUser command result"
-    Set-SPOUser -Site $siteURL -LoginName $userToRemove -IsSiteCollectionAdmin $false
-                </pre>
-            </div>
-        </div>
+                            <p>Combine all those components to make a whole script.</p>
+                            <pre id="copy-code">
+                
+                    $gname = 'John'
+                    $lname = 'DOE'
+                    $acctpwd = "whateverP@ssw0rd"
+                    $ref_User = jane.dove
+                    $upnsfx = (Get-ADForest).UPNSuffixes
+                    $rfrnc_user = Get-ADUser $ref_User -Properties *
+                    $dsn = ($rfrnc_user).DistinguishedName
+                    $targetOU = $dsn.Substring($dsn.IndexOf('OU=',[System.StringComparison]::CurrentCultureIgnoreCase))
+                    $splat = @{
+                        Path = $targetOU
+                        Name = "$($gname) $($lname)"
+                        DisplayName = "$($gname) $($lname)"
+                        GivenName = $gname
+                        SurName = $lname
+                        UserPrincipalName = "$(($gname).ToLowerCase()).$(($lname).ToLowerCase)@$($(upnsfx))"
+                        Description = 'System Administrator' #depends on what your organization use this attribute
+                        AccountPassword = (ConvertTo-SecureString -AsPlainText $acctpwd -force)	
+                    }
+                
+                    New-ADUser @splat -Verbose 
+                            </pre>
+                            <p>When the script is executed as-is, the result would return these values after you query using "Get-ADUser -Identity john.doe".</p>
+                            <pre id="code-block">
+                
+                    Name -> John DOE
+                    DisplayName -> John DOE
+                    GivenName -> John
+                    SurName -> DOE
+                    UserPrincipalName -> john.doe@domain.xyz
+                    DistinguishedName -> CN=John DOE,OU=IT,OU=User,DC=domain-xyz,DC=local
+                            </pre>
+                            </div>
+                            <br>
+                            <div id="set-spouser" class="col-lg-12">                
+                                <h1 style="text-align: Left;" id="set-spouser">OneDrive: Remove Owner Permission</h1>
+                                <h2 style="text-align: left;" id="set-spouser">Using PowerShell</h2><br>
+                
+                                <p>One of my junior colleagues received a support request related to OneDrive folder permissions.
+                                    Initially, my assumption on that case was as simple as remotely accessing the end-user computer and remove the permission via GUI.
+                                    However, that colleague later found out that it was a little bit complicated than the usual. The permission that was attached to the folder as an "Owner" permission.
+                
+                                    Given the fact that this might occur more than once, I derived a script that they can use later on by just simply inputting the details
+                                    of the real owner and the other user with an "Owner" permission.
+                                </p>
+                
+                                <p>Assuming that you already have the PS Module installed on your local computer, you can copy the script below:</p>
+                                
+                                <p>Connect to your SharePoint admin center using your admin account</p>
+                                <pre>
+                    $adminSiteUrl = "https://'<'yourtenantname'>'-admin.sharepoint.com"
+                    Connect-SPOService -Url $adminSiteUrl
+                                </pre>
+                
+                                <p>
+                                    Create your variable to store the following details:
+                                    "$realOwner" refers to the user account who truly owns the folder/file.
+                                    "$siteURL" refers to the OneDrive URL of the $realOwner.
+                                </p>
+                                <pre>
+                    $realOwner = Read-host "Input the username without the @domain.com"
+                    $siteURL = Get-SPOSite -IncludePersonalSite $true -Limit All -Filter "Url -like '-my.sharepoint.com/personal/'" | ?{$_.Url -like "${$realOwner}"}
+                                </pre>
+                                
+                                <p>
+                                    This part of the script is to determine who are the user/s with the "Owner" permission of the person who reported the issue.
+                                    Using the Get-SPOUser, we target the OneDrive URL of the "$realOwner" by calling the "-Site" parameter and filtering the property "IsSiteAdmin"
+                                    that is the equivalent of the "Owner" permission.
+                                </p>
+                                <pre>                    
+                    Get-SPOUser -Site $siteURL.Url | ?{$_.IsSiteAdmin -eq $true}
+                                </pre>
+                    
+                                <p>
+                                    Lastly, we remove the list of user/s that shouldn't have the "Owner" permission of a folder they don't normally own.
+                                    Using the Set-SPOUser, we again target the OneDrive URL of the "$realOwner" by calling the "-Site" paramater, then we 
+                                    associate this with "-LoginName" paramater and assign the "$userToRemove" variable and issue the "-IsSiteCollectionAdmin" paramater to "$false"
+                                    to remove the permission.
+                                </p>
+                                <pre>
+                    $userToRemove = Read-Host "Input LoginName, refer to Get-SPOUser command result"
+                    Set-SPOUser -Site $siteURL -LoginName $userToRemove -IsSiteCollectionAdmin $false
+                                </pre>
+                            </div>
+                        </div>
+                    </th>
+                </tr>
+            </thead>
+        </table>
     </div>    
 </div>
 <!--{% include ouibounce.html %}-->
