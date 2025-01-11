@@ -844,7 +844,7 @@ body {
 .sticky-column{
   position: sticky !important;
   position: -webkit-sticky !important;
-  align-self: flex-start;
+  justify-content: flex-start;
 }
 pre {
   position: relative;
