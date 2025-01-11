@@ -845,6 +845,8 @@ body {
   position: sticky !important;
   position: -webkit-sticky !important;
   align-self: flex-start !important;
+  flex-flow: nowrap !important;
+  z-index: 1020 !important;
 }
 pre {
   position: relative;
