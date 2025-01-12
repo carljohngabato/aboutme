@@ -173,7 +173,7 @@ Set-SPOUser -Site $siteURL -LoginName $userToRemove -IsSiteCollectionAdmin $fals
             </pre>
             <p>Putting the script altogether and added a do-while loop to continue removing multiple account.</p>
             <pre class="code-block">
-                $adminSiteUrl = "https://'<'yourtenantname'>'-admin.sharepoint.com"
+$adminSiteUrl = "https://'<'yourtenantname'>'-admin.sharepoint.com"
 Connect-SPOService -Url $adminSiteUrl
 
 $realOwner = Read-host "Input the username without the @domain.com"
@@ -181,17 +181,13 @@ $siteURL = Get-SPOSite -IncludePersonalSite $true -Limit All -Filter "Url -like 
 
 Get-SPOUser -Site $siteURL.Url | ?{$_.IsSiteAdmin -eq $true}
 
-
 $isTrue = ""
-Do{
-    
+Do{    
     if($isTrue -ne "Exit" -or $isTrue -ne "E"){
         $userToRemove = Read-Host "`n Input LoginName, refer to Get-SPOUser command result"
         #Set-SPOUser -Site $siteURL -LoginName $userToRemove -IsSiteCollectionAdmin $false
-    }
-    
+    }    
     $isTrue = Read-Host "`n Press Any Key to continue removing other user; Exit[E] to end"
-
 }until($isTrue -eq "Exit" -or $isTrue -eq "E")
 
             </pre>
