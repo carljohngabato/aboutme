@@ -124,6 +124,17 @@ DistinguishedName -> CN=John DOE,OU=IT,OU=User,DC=domain-xyz,DC=local
             </p>
 
             <p>Assuming that you already have the PS Module installed on your local computer, you can copy the script below:</p>
+
+            <p>Before executing the script below, there is another requirement for the script to be able to retrieve any data from OneDrive.
+                If this step is not done prior to executing the script, an error will be encountered telling that you don't have appropriate access.
+                We need to generate the OneDrive management link through the Admin Portal
+            </p>
+            <pre class="code-block">
+                Login to the Admin Portal using your administrator account
+                Select the affected user
+                Click on OneDrive
+                Generate OneDrive link
+            </pre>
             
             <p>Connect to your SharePoint admin center using your admin account</p>
             <pre>
