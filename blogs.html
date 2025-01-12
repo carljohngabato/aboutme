@@ -127,7 +127,7 @@ DistinguishedName -> CN=John DOE,OU=IT,OU=User,DC=domain-xyz,DC=local
             
             <p>Connect to your SharePoint admin center using your admin account</p>
             <pre>
-$adminSiteUrl = "https://'<'yourtenantname'>'-admin.sharepoint.com"
+$adminSiteUrl = "https://yourtenantname-admin.sharepoint.com"
 Connect-SPOService -Url $adminSiteUrl
             </pre>
 
@@ -151,7 +151,7 @@ Get-SPOUser -Site $siteURL.Url | ?{$_.IsSiteAdmin -eq $true}
             </pre>
 
             <p>
-                Lastly, we remove the list of user/s that shouldn't have the "Owner" permission of a folder they don't normally own.
+                Lastly, we remove the list of user/s that shouldn't have the "Owner" permission of a folder/file they don't normally own.
                 Using the Set-SPOUser, we again target the OneDrive URL of the "$realOwner" by calling the "-Site" paramater, then we 
                 associate this with "-LoginName" paramater and assign the "$userToRemove" variable and issue the "-IsSiteCollectionAdmin" paramater to "$false"
                 to remove the permission.
@@ -159,6 +159,30 @@ Get-SPOUser -Site $siteURL.Url | ?{$_.IsSiteAdmin -eq $true}
             <pre>
 $userToRemove = Read-Host "Input LoginName, refer to Get-SPOUser command result"
 Set-SPOUser -Site $siteURL -LoginName $userToRemove -IsSiteCollectionAdmin $false
+            </pre>
+            <p>Putting the script altogether and added a do-while loop to continue removing multiple account.</p>
+            <pre class="code-block">
+                $adminSiteUrl = "https://'<'yourtenantname'>'-admin.sharepoint.com"
+Connect-SPOService -Url $adminSiteUrl
+
+$realOwner = Read-host "Input the username without the @domain.com"
+$siteURL = Get-SPOSite -IncludePersonalSite $true -Limit All -Filter "Url -like '-my.sharepoint.com/personal/'" | ?{$_.Url -like "${$realOwner}"}
+
+Get-SPOUser -Site $siteURL.Url | ?{$_.IsSiteAdmin -eq $true}
+
+
+$isTrue = ""
+Do{
+    
+    if($isTrue -ne "Exit" -or $isTrue -ne "E"){
+        $userToRemove = Read-Host "`n Input LoginName, refer to Get-SPOUser command result"
+        #Set-SPOUser -Site $siteURL -LoginName $userToRemove -IsSiteCollectionAdmin $false
+    }
+    
+    $isTrue = Read-Host "`n Press Any Key to continue removing other user; Exit[E] to end"
+
+}until($isTrue -eq "Exit" -or $isTrue -eq "E")
+
             </pre>
         </div>
     </div>

@@ -860,7 +860,7 @@ pre {
   border-radius: 1%;
 }
 .code-block{
-  overflow: scroll !important;
+  overflow-x: auto !important;
 }
 .copy-button {
   position: absolute;
