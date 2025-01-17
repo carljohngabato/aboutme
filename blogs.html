@@ -206,7 +206,7 @@ Do{
     Connect-SPOService -Url https://"<"your-tenant-name">"-admin.sharepoint.com
 
     #retrieve all the sites by declaring the parameter "Limit" and filter only public visibility
-    $pubSPList = Get-SPOSite -Limit All | ?{$_.Visibility -eq "Public"}
+    $pubSPList = Get-Team -Limit All | ?{$_.Visibility -eq "Public"}
 
     #extract the list to a csv file as a reference
     $pubSPList | Export-Csv -Path "C:\Path\To\Directory\filename.csv" -NoTypeInformation
