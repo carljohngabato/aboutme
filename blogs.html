@@ -203,7 +203,7 @@ Do{
             <p>The script will help you manage multiple sites that needs to be converted into a Private from a Public.</p>
             <p>Connect to your SharePoint Admin Center, and authenticate using an administrator account with sufficient permissions to perform this task.</p>
             <pre>
-    Connect-SPOService -Url https://'<'your-tenant-name'>'-admin.sharepoint.com
+    Connect-SPOService -Url https://"<"your-tenant-name">"-admin.sharepoint.com
 
     #retrieve all the sites by declaring the parameter "Limit" and filter only public visibility
     $pubSPList = Get-SPOSite -Limit All | ?{$_.Visibility -eq "Public"}
