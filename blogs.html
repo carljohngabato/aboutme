@@ -24,33 +24,41 @@ title: Blogs
     
         <p>To my fellow engineers out there, here's a script I have derived to automate the task:</p><br>
     
-        <p>I will start by assigning static values to my variables, in case you're wondering why there are only 3 variables;
-            We will get to the explanation later in the details below.</p>
+        <p>
+            Start by creating static values to the variables (Name, Surname, and Passwrod), in case you're wondering why there are only 3 variables;
+            We will get to the explanation later in the details below.
+        </p>
         <pre id="code-block">
     
 $gname = 'John'
 $lname = 'DOE'
 $acctpwd = "whateverP@ssw0rd"
         </pre>
-        <p>On the next part, I will use a reference account which is an existing user in the AD and store it in a variable called "$ref_User".
-            I use this technique to retrieve the user account details that I will copy into the new user account.
-            The only thing to note here is that the new account will be in the same department or role of the reference account. </p>
+        <p>
+            On the next part, we will use a reference account which is an existing user account; store it in a variable called "$ref_User".
+            We will use the account properties of the existing user account, which will copied into the new user account.
+            The only thing to note here is that the new account will be in the same department or role of the reference account.
+        </p>
         <pre id="code-block">
     
 $ref_User = jane.dove
         </pre>            
 
-        <p>I will also retrieve the domain name of the AD Forest.
-            Then store "that" value in a variable call "$upnsfx", which will be used later on the script as the UPN Suffix.</p>
+        <p>
+            We will also retrieve the domain of the AD Forest.
+            Then store "that" value in a variable call "$upnsfx", which will be used later on the script as the UPN Suffix.
+        </p>
         <pre id="code-block">
     
 $upnsfx = (Get-ADForest).UPNSuffixes
         </pre>
     
-        <p>I will also need the OU location where the new account will be added.
-            The 1st line will retrieve all the attributes of the reference account.
-            The 2nd line will select only the DistinguishedName attribute of the same reference account.
-            The 3rd line will isolate the string value of the Organizational Unit (OU) of that same reference account.</p>
+        <p>
+            We will also need the OU location where the new account will be added.
+            The $rfrnc_user variable will retrieve all the attributes of the reference account.
+            The $dsn variable will select only the DistinguishedName attribute of the same reference account.
+            The $targetOU variable will isolate the string value of the Organizational Unit (OU) of that same reference account.
+        </p>
         
         <pre id="code-block">
     
