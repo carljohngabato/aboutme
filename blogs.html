@@ -205,7 +205,8 @@ Do{
             <pre id="copy-code">
     Connect-MicrosoftTeams
 
-    #retrieve all teams by not declaring any parameters and filter the privacy that are public using the Visibility property
+    #retrieve all teams by not declaring any parameters
+    #filter the privacy that are public using the Visibility property
     $listPubTeams = Get-Team | ?{$_.Visibility -eq "Public"}
 
     #extract the list to a csv file as a reference
