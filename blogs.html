@@ -174,7 +174,7 @@ $userToRemove = Read-Host "Input LoginName, refer to Get-SPOUser command result"
 Set-SPOUser -Site $siteURL -LoginName $userToRemove -IsSiteCollectionAdmin $false
             </pre>
             <p>Putting the script altogether and added a do-while loop to continue removing multiple account.</p>
-            <pre class="code-block">
+            <pre class="copy-code">
 $adminSiteUrl = "https://'<'yourtenantname'>'-admin.sharepoint.com"
 Connect-SPOService -Url $adminSiteUrl
 
@@ -202,7 +202,7 @@ Do{
             <p>This is for PowerShell aspirants out there that wants to manage the privacy of Teams programatically.</p>
             <p>The script will manage multiple teams to convert the privacy settings to Private.</p>
             <p>Connect to Teams, and authenticate using an administrator account with sufficient permissions to perform this task.</p>
-            <pre>
+            <pre class="copy-code">
     Connect-MicrosoftTeams
 
     #retrieve all teams by not declaring any parameters and filter the privacy that are public using the Visibility property
