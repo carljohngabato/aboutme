@@ -206,15 +206,15 @@ Do{
     Connect-MicrosoftTeams
 
     #retrieve all teams by not declaring any parameters and filter the privacy that are public using the Visibility property
-    $pubSPList = Get-Team | ?{$_.Visibility -eq "Public"}
+    $listPubTeams = Get-Team | ?{$_.Visibility -eq "Public"}
 
     #extract the list to a csv file as a reference
-    $pubSPList | Export-Csv -Path "C:\Path\To\Directory\filename.csv" -NoTypeInformation
+    $listPubTeams | Export-Csv -Path "C:\Path\To\Directory\filename.csv" -NoTypeInformation
 
     #loop into the list one-by-one then convert the public team to private
-    foreach($site in $pubSPList){
+    foreach($team in $listPubTeams){
         #declare the verbose parameter to visually know which site is being processed
-        Set-Team -GroupId $site.GroupId -Visibility Private -Verbose
+        Set-Team -GroupId $team.GroupId -Visibility Private -Verbose
     }
             </pre>
         </div>
